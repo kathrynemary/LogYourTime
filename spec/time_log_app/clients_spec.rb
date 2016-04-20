@@ -8,14 +8,14 @@ describe Clients do
 		expect(example.list).to include('NewCompany')
 	end
   
-	it "lets you add a new client" do
+	it "lets you add 2 new clients" do
 	  example = Clients.new
 		example.add_new_client('OldCompany')
 		example.add_new_client('NewCompany')
 		expect(example.list).to include('NewCompany', 'OldCompany')
 	end
 
-	it "lets you add a new client" do
+	it "counts the clients correctly" do
 	  example = Clients.new
 		example.add_new_client('OldCompany')
 		example.add_new_client('NewCompany')
