@@ -30,14 +30,3 @@ describe TimeLog do
 	end
 
 end
-
-#in interface class
-#put in start and end times/dates
-#convert the input for start and end times to DateTime
-#don't let ppl put in a time that is after the current time
-#raise error given incorrect format input
-#when they enter their name, display and ask if it's correct, and save only after confirmation
-#check to make sure there's only 1 employee of that name
-#they can't submit a time log for the same time twice
-#want to tie the event to the employee and client
-#options for the types of work
