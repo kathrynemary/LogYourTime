@@ -1,4 +1,5 @@
 require_relative 'errors'
+require_relative 'clients_list'
 
 class Clients
 
@@ -12,6 +13,7 @@ class Clients
     double_check(company_name)
 		verify_input(company_name)
 		@list.push(company_name)
+    ClientsList.add_name(company_name)
 	end
 
 	def double_check(name)

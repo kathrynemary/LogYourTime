@@ -35,6 +35,13 @@ describe Clients do
 		expect { example.add_new_client('NewCompany') }.to raise_error(Errors::ArgumentError)
   end
 
+  it "should add a client to ClientsList" do
+		example = Clients.new
+		allow(example).to receive (:double_check) {"Y"}
+		example.add_new_client('JohnsCompany')
+		expect(ClientsList).to include {'JohnsCompany'}
+  end
+  
 end
 
 

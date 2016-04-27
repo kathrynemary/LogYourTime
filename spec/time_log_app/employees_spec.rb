@@ -28,5 +28,29 @@ describe Employees do
 		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
   end
 
+  it "can add an employee to an Admins list" do #this is failing...
+		example = Employees.new
+		allow(example).to receive (:double_check) {"Y"}
+    allow(example).to receive (:admin?) {'y'}
+		example.add_new_employee('Herbert Doe')
+    expect(example.admins).to include('Herbert Doe') 
+	end
+
+  it "should add an employee to EmployeesList" do
+		example = Employees.new
+		allow(example).to receive (:double_check) {"Y"}
+    allow(example).to receive (:admin?) {'n'}
+		example.add_new_employee('John Doe')
+		expect(EmployeesList).to include {'John Doe'}
+  end
+  
+	it "should add an admin to EmployeesList" do
+		example = Employees.new
+		allow(example).to receive (:double_check) {"Y"}
+    allow(example).to receive (:admin?) {'Y'}
+		example.add_new_employee('John Smith')
+		expect(EmployeesList).to include {'John Doe'}
+  end
+
 end
 
