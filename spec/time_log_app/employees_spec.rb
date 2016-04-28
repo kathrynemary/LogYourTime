@@ -32,6 +32,7 @@ describe Employees do
 		example = Employees.new
 		allow(example).to receive (:double_check) {"Y"}
     allow(example).to receive (:admin?) {'y'}
+		example.push_admin('Herbert Doe')
 		example.add_new_employee('Herbert Doe')
     expect(example.admins).to include('Herbert Doe') 
 	end

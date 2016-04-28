@@ -1,28 +1,22 @@
 require_relative '../../time_log_app/name_event_input_interface'
 
 describe NameInputInterface do
+
   context "for employees" do 
 		before :each do
-			@employees = Employees.new
-			@employees.add_new_employee('John Doe')
-			@employees.add_new_employee('Jane Doe')
-			@example = NameInputInterface.new(@employees)	
+			employees = Employees.new
+			employees.add_new_employee('John Doe')
+			employees.add_new_employee('Jane Doe')
+			@example = NameInputInterface.new(EmployeesList.list)	
 		end
 
-		it "knows the employees' names" do
-			expect(@example.list_names).to include('John Doe')
-		end
-
-		it "excludes the names of non-employees" do
-			expect(@example.list_names).not_to include('John Deer')
-		end
-		
 		it "excludes the partial names of employees" do
-			expect(@example.list_names).not_to include('John')
+			expect(EmployeesList.list).not_to include('John')
 		end
 
 		it "should accept input to select an employee" do
 			allow(@example).to receive(:ask_name) {"Jane Doe"}
+			allow(@example).to receive(:verify_input) {"Y"}
 			@example.get_name
 		  expect(@example.selection).to eq("Jane Doe")
 		end
@@ -38,7 +32,7 @@ describe NameInputInterface do
 			@clients = Clients.new
 			@clients.add_new_client('MegaCorp')
 			@clients.add_new_client('MinorCorp')
-			@example = NameInputInterface.new(@clients)	
+			@example = NameInputInterface.new(ClientsList.list)	
 		end
 
 		it "knows the clients' names" do

@@ -1,5 +1,6 @@
 require_relative 'employees'
 require_relative 'clients'
+require_relative 'errors'
 
 class NameInputInterface
 
@@ -9,8 +10,8 @@ class NameInputInterface
 	  @names = names
 	end
 
-	def list_names
-	  names = @names.list
+	def list_names 
+	  names = @names
 		names
 	end
 
@@ -21,12 +22,12 @@ class NameInputInterface
 	end
 
 	def ask_name
-    puts "Please enter the name for the #{names}."
+    puts "Please enter the name."
 		gets.chomp
 	end
 
 	def verify_input(input)
-    if list_names.include? input
+		if @names.include? input
 			input
 		else
 			raise Errors::ArgumentError.new("The name #{input} isn't in my records!")
