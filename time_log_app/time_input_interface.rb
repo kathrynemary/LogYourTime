@@ -1,3 +1,5 @@
+require_relative 'errors'
+
 class TimeInputInterface
 
   attr_reader :time, :date, :date_and_time
@@ -32,7 +34,8 @@ class TimeInputInterface
   end
 
 	def verify_time_input(input)
-    if DateTime.parse(input) 
+    if input =~ /\d+:\d\d+/
+      puts "that time is valid" ############
 			input
 		else
 			raise Errors::ArgumentError.new("#{input} is an invalid time.")
