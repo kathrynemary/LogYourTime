@@ -8,6 +8,24 @@ describe Employees do
     expect(example.list).to include('John Doe')
 	end
 
+  it "gets a username for a new employee" do
+    example = Employees.new
+		allow(example).to receive(:ask_user_name) {'johnnyboy'}
+		allow(example).to receive (:double_check) {"y"}
+		example.add_new_employee('John Doe')
+		expect(example.user_names).to include('johnnyboy')
+	end
+	
+	it "won't let you add the same employee twice." do
+    example = Employees.new
+		allow(example).to receive(:ask_user_name) {'igloo'}
+		allow(example).to receive (:double_check) {"y"}
+		example.add_new_employee('Coldest Person')
+		allow(example).to receive(:ask_user_name) {'igloo'}
+		allow(example).to receive (:double_check) {"y"}
+		expect { example.add_new_employee('Less-Cold Person') }.to raise_error(Errors::ArgumentError)
+  end
+
 	it "lets you 2 new employees" do
 	  example = Employees.new
 		example.add_new_employee('John Doe')
@@ -27,8 +45,8 @@ describe Employees do
     example.add_new_employee('John Doe')
 		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
   end
-
-  it "can add an employee to an Admins list" do #this is failing...
+  
+	it "can add an employee to an Admins list" do
 		example = Employees.new
 		allow(example).to receive (:double_check) {"Y"}
     allow(example).to receive (:admin?) {'y'}

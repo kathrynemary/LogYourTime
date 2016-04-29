@@ -1,9 +1,9 @@
-require_relative '../../time_log_app/event_input_interface'
+require_relative '../../time_log_app/work_type_input_interface'
 
-describe EventInputInterface do
+describe WorkTypeInterface do
 
   before :each do
-	  @example = EventInputInterface.new
+	  @example = WorkTypeInterface.new
 	end
 
   it "should have 3 options for types of work" do

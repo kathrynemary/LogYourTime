@@ -3,19 +3,35 @@ require_relative 'employees_list'
 
 class Employees
   
-  attr_reader :list, :admins
+  attr_reader :list, :admins, :user_names
 
 	def initialize
 	  @list = []
 		@admins = []
+		@user_names = []
 	end
 
   def add_new_employee(name)
 	  double_check(name)
 		verify_input(name)
+    get_user_name(name)
 		admin?(name)
 		@list.push(name)
 		EmployeesList.add_name(name)
+	end
+
+  def get_user_name(name)
+	  user = ask_user_name
+    double_check(user)
+		verify_user_name(user)
+		@user_names.push(user) 
+	  EmployeeUsernames.set_up_username(name, user)
+	end
+
+  def ask_user_name
+	  puts "What would you like the username to be?"
+	  answer = gets.chomp	
+		answer
 	end
 
   def double_check(name)
@@ -29,6 +45,14 @@ class Employees
   def verify_input(name)
 		if @list.include? name
 			raise Errors::ArgumentError.new("That name is already in our records!")
+    else
+			name
+		end
+	end
+  
+	def verify_user_name(name)
+		if @user_names.include? name
+			raise Errors::ArgumentError.new("That username is already in our records!")
     else
 			name
 		end
