@@ -22,7 +22,7 @@ class NameInputInterface
 	end
 
 	def ask_name
-    puts "Please enter the name."
+    puts "Please enter the name of the client."
 		gets.chomp
 	end
 

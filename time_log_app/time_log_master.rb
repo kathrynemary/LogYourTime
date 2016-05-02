@@ -1,30 +1,54 @@
+require_relative 'time_input_interface'
+require_relative 'work_type_input_interface'
+require_relative 'name_event_input_interface'
+require 'time_diff'
+
 class TimeLog
 
-require 'date'
-require 'time'
+	attr_reader :start_time, :end_time, :hours_worked, :log
 
-  attr_reader :start_time, :end_time
-
-	def add_new_event(employee, start_time, end_time, type_of_work, client)
-		time_length = calculate_hours_worked(start_time, end_time)
-		@log = {'employee_name' => employee, 'start' => start_time, 'end' => end_time, 'hours_worked' => time_length, 'type' => type_of_work, 'name_of_client' => client}
+	def initialize(employee)
+		@employee = employee
+	end
+	
+  def add_new_event
+    get_start_time
+		get_end_time
+    calculate_hours_worked
+	  get_work_type
+  	get_client
+		synthesize_info(@employee, @start_time, @end_time, @type_of_work, @client)
+		write_to_log
 	end
 
-	def calculate_hours_worked(start_time=@start_time, end_time=@end_time)
-		end_time - start_time
+  def get_start_time
+    @start_time = TimeInputInterface.new.get_time_and_date
+	end	
+	
+  def get_end_time
+		@end_time = TimeInputInterface.new.get_time_and_date
+  end	
+	
+  def get_work_type
+		@work_type = WorkTypeInterface.new.get_timecode 
+  end	
+	
+  def get_client
+	#  @client = NameInputInterface.new(ClientsList.list).get_name
+	  @client = "MegaCorp"
 	end
 
-	def log
+	def synthesize_info(employee, start_time, end_time, type_of_work, client)
+		@log = {'employee_name' => @employee, 'start' => @start_time, 'end' => @end_time, 'hours_worked' => @hours_worked, 'type' => @work_type, 'name_of_client' => @client}
+	end
+
+	def calculate_hours_worked
+		@hours_worked = Time.diff(DateTime.parse(@start_time), DateTime.parse(@end_time), '%y, %d and %h:%m:%s')
+	end
+
+	def write_to_log
 	  FileWriter.write(@log)		
-		@log
-	end
-
-  def enter_start_time(input)
-	  @start_time = Date.new(input)
-	end
- 
-	def enter_end_time(input)
-		@end_time = Date.new(input)
 	end
 
 end
+

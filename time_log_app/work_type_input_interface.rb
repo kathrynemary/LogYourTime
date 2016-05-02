@@ -5,7 +5,6 @@ class WorkTypeInterface
 	attr_reader :timecode
 
   def get_timecode
-    puts "i have started getting the timecode" #############
 		input = ask_timecode
 		verify_timecode_input(input)
 		select_timecode(input)

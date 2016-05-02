@@ -29,13 +29,11 @@ class TimeInputInterface
   def get_time_and_date
     time = get_time
 		date = get_date
-  	date_and_time = (date + " " +  time) 
-  	@date_and_time = DateTime.parse(date_and_time)
+  	@date_and_time = (date + " " +  time) 
   end
 
 	def verify_time_input(input)
     if input =~ /\d+:\d\d+/
-      puts "that time is valid" ############
 			input
 		else
 			raise Errors::ArgumentError.new("#{input} is an invalid time.")

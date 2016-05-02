@@ -24,9 +24,8 @@ class LogIn
 
   def select_action(input)
     if input == '1'
-		  #TimeLogInputSynthesizer.method
-			#change so that it pre-selects the correct employee
-			'log time'
+		  TimeLog.new(@employee).add_new_event
+		  puts "Thank you! Your time has been logged."	
 		elsif input == '2'
 		  'view hours'
 		elsif input == '3'
