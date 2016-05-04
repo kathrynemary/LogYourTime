@@ -1,0 +1,5 @@
+require_relative '../time_log_app'
+require_relative '../time_log_app/clients'
+require_relative '../time_log_app/clients_list'
+require_relative '../time_log_app/employees_list'
+require 'PStore'

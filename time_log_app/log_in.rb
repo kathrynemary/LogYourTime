@@ -31,7 +31,8 @@ class LogIn
 		elsif input == '3'
 			add_employee
 		elsif input == '4'
-	    add_client	
+      display_client_list
+			add_client	
     elsif
       'run monthly totals by employee'
 		elsif
@@ -44,6 +45,10 @@ class LogIn
 		puts "What is their name?"
 	  input = gets.chomp
 		employee.add_new_employee(input)
+	end
+
+	def display_client_list
+    ClientsList.return_list
 	end
 
 	def add_client

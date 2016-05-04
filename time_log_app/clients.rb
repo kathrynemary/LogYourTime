@@ -3,16 +3,9 @@ require_relative 'clients_list'
 
 class Clients
 
-  attr_reader :list 
- 
-	def initialize
-	  @list = []
-	end
-
   def add_new_client(company_name)
     double_check(company_name)
 		verify_input(company_name)
-		@list.push(company_name)
     ClientsList.add_name(company_name)
 	end
 

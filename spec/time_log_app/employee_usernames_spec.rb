@@ -2,23 +2,19 @@ require_relative '../../time_log_app/employee_usernames'
 
 describe EmployeeUsernames do
 
-  it "returns a username for an employee" do
+  before :each do
     example_john = Employees.new
 		allow(example_john).to receive(:ask_user_name) {'johnnyboy'}
 		allow(example_john).to receive(:double_check) {"y"}
 		allow(example_john).to receive(:verify_user_name) {'y'}
     example_john.get_user_name('John Doe')
-    
+	end
+
+	it "returns a username for an employee" do
 		expect(EmployeeUsernames.username('John Doe')).to eq('johnnyboy')
 	end
   
   it "returns an employee for a username" do
-    example_john = Employees.new
-		allow(example_john).to receive(:ask_user_name) {'johnnyboy'}
-		allow(example_john).to receive(:double_check) {"y"}
-		allow(example_john).to receive(:verify_user_name) {'y'}
-    example_john.get_user_name('John Doe')
-    
 		expect(EmployeeUsernames.employee('johnnyboy')).to eq('John Doe')
 	end
 	

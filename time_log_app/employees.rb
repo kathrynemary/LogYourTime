@@ -1,5 +1,7 @@
 require_relative 'errors'
 require_relative 'employees_list'
+require_relative 'employee_usernames'
+require 'pstore'
 
 class Employees
   

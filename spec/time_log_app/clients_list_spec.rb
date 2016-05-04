@@ -1,17 +1,21 @@
-require_relative '../../time_log_app/clients_list'
+require 'spec_helper'
 
-describe Clients do
+describe ClientsList do
 
-  it "will return list of added clients" do
-		example_clients = Clients.new
-		example_clients.add_new_client('MegaCorp')
-    expect(ClientsList.list).to include('MegaCorp')
+  before :each do
+		@example = Clients.new
+		allow(@example).to receive (:double_check) {"Y"}
+    allow(@example).to receive (:verify_input) {'y'}
+		@example.add_new_client('MegaCorp')
+		
+		@other_example = Clients.new
+		allow(@other_example).to receive (:double_check) {"Y"}
+    allow(@other_example).to receive (:verify_input) {'y'}
+		@other_example.add_new_client('MinorCorp')
 	end
 
 	it "returns both clients" do
-	  example = Clients.new
-		example.add_new_client('MinorCorp')
-		expect(ClientsList.list).to include('MegaCorp', 'MinorCorp')
+		expect(ClientsList.return_list).to include('MegaCorp', 'MinorCorp')
 	end
 
 end

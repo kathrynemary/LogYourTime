@@ -2,6 +2,7 @@ require_relative 'time_input_interface'
 require_relative 'work_type_input_interface'
 require_relative 'name_event_input_interface'
 require 'time_diff'
+require 'pstore'
 
 class TimeLog
 
@@ -34,8 +35,7 @@ class TimeLog
   end	
 	
   def get_client
-	#  @client = NameInputInterface.new(ClientsList.list).get_name
-	  @client = "MegaCorp"
+	  @client = NameInputInterface.new(ClientsList.list).get_name
 	end
 
 	def synthesize_info(employee, start_time, end_time, type_of_work, client)
@@ -47,8 +47,12 @@ class TimeLog
 	end
 
 	def write_to_log
-	  FileWriter.write(@log)		
+	  event = PStore.new("events.pstore")
+	  event.transaction do
+			event[log] = @log
+
+			event.commit
+		end
 	end
 
 end
-

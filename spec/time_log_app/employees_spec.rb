@@ -4,43 +4,55 @@ describe Employees do
 
   it "lets you add a new employee" do
 		example = Employees.new
-		example.add_new_employee('John Doe')
-    expect(example.list).to include('John Doe')
-	end
-
-  it "gets a username for a new employee" do
-    example = Employees.new
 		allow(example).to receive(:ask_user_name) {'johnnyboy'}
+		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
 		example.add_new_employee('John Doe')
 		expect(example.user_names).to include('johnnyboy')
+    expect(example.list).to include('John Doe')
 	end
-	
+
 	it "won't let you add the same employee twice." do
     example = Employees.new
 		allow(example).to receive(:ask_user_name) {'igloo'}
+		allow(example).to receive (:admin?) {"y"}
+		allow(example).to receive (:double_check) {"y"}
+		example.add_new_employee('Coldest Person')
+		allow(example).to receive(:ask_user_name) {'iglue'}
+		allow(example).to receive (:admin?) {"y"}
+		allow(example).to receive (:double_check) {"y"}
+		expect { example.add_new_employee('Coldest Person') }.to raise_error(Errors::ArgumentError)
+  end
+
+	it "won't let you add the same username twice." do
+    example = Employees.new
+		allow(example).to receive(:ask_user_name) {'igloo'}
+		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
 		example.add_new_employee('Coldest Person')
 		allow(example).to receive(:ask_user_name) {'igloo'}
+		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
 		expect { example.add_new_employee('Less-Cold Person') }.to raise_error(Errors::ArgumentError)
   end
 
 	it "lets you 2 new employees" do
 	  example = Employees.new
+		allow(example).to receive(:ask_user_name) {'johnnyboy'}
+		allow(example).to receive (:admin?) {"y"}
+		allow(example).to receive (:double_check) {"y"}
 		example.add_new_employee('John Doe')
+		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
+		allow(example).to receive (:admin?) {"y"}
+		allow(example).to receive (:double_check) {"y"}
 		example.add_new_employee('Jane Doe')
 		expect(example.list).to include('John Doe', 'Jane Doe')
 	end
 
-	it "won't let you add the same employee twice." do
-    example = Employees.new
-    example.add_new_employee('John Doe')
-		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
-  end
-
 	it "will raise an error if you don't verify the name " do
     example = Employees.new
+		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
+		allow(example).to receive (:admin?) {"n"}
 		allow(example).to receive (:double_check) {"N"}
     example.add_new_employee('John Doe')
 		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
