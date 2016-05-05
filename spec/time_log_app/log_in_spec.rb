@@ -1,4 +1,4 @@
-require_relative '../../time_log_app/log_in'
+require 'spec_helper'
 
 describe LogIn do
 	
@@ -20,20 +20,19 @@ describe LogIn do
 	end
 
 	it "gets the employee from a username" do
+		@example_employees = Employees.new
+		allow(@example_employees).to receive (:double_check) {"Y"}
+    allow(@example_employees).to receive (:admin?) {'y'}
+		allow(@example_employees).to receive(:ask_user_name) {"johnnyboy"}
+		@example_employees.add_new_employee('John Doe')
 	  example_login = LogIn.new('johnnyboy')  
 		expect(example_login.employee).to eq("John Doe")
 	end
 
-  it "should offer more options to an admin" do
+  it "should let an admin run totals by employee" do
 		example_login = LogIn.new('ilovecabbage')  
-		allow(example_login).to receive(:admin_options) {"1"} 
- 		expect(example_login.display_options).to eq('log time')
-	end
-
-  it "should let an admin add a new employee" do
-		example_login = LogIn.new('ilovecabbage')  
-		allow(example_login).to receive(:admin_options) {"3"} 
- 		expect(example_login.display_options).to receive('add_employee')
+		allow(example_login).to receive(:admin_options) {"6"} 
+ 		expect(example_login.display_options).to eq('run monthly totals by client')
 	end
 
 end

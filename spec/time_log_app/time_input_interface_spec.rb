@@ -9,7 +9,7 @@ describe TimeInputInterface do
 		allow(@example).to receive(:ask_date) {"september 4th 2015"}
 		allow(@example).to receive(:ask_time) {"9:00"}
 		@example.get_time_and_date
-		expect(@example.date_and_time).to eq(DateTime.parse("september 4th 2015 9:00"))
+		expect(@example.date_and_time).to eq("september 4th 2015 9:00")
 	end
 	
 	it "should raise an error or incorrect time input" do

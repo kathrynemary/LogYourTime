@@ -1,5 +1,7 @@
 require_relative 'employee_usernames'
 require_relative 'employees_list'
+require_relative 'clients_list'
+require 'PStore'
 
 class LogIn
 
@@ -27,16 +29,16 @@ class LogIn
 		  TimeLog.new(@employee).add_new_event
 		  puts "Thank you! Your time has been logged."	
 		elsif input == '2'
-		  puts 'view hours'
+		  'view hours'
 		elsif input == '3'
 			add_employee
 		elsif input == '4'
       display_client_list
 			add_client	
-    elsif
-      puts 'run monthly totals by employee'
-		elsif
-      puts 'run monthly totals by client'
+    elsif input == '5'
+      'run monthly totals by employee'
+		elsif input == '6'
+      'run monthly totals by client'
 		end
   end
 

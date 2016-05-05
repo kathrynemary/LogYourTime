@@ -10,6 +10,7 @@ class TimeLog
 
 	def initialize(employee)
 		@employee = employee
+	  @event = PStore.new("events.pstore")
 	end
 	
   def add_new_event
@@ -51,16 +52,29 @@ class TimeLog
 	end
 
 	def calculate_hours_worked
-		@hours_worked = Time.diff(DateTime.parse(@start_time), DateTime.parse(@end_time), '%y, %d and %h:%m:%s')
+		#@hours_worked = Time.diff(DateTime.parse(@start_time), DateTime.parse(@end_time), '%y, %d and %h:%m:%s')
+		starting = DateTime.new("8:00")
+  	ending = DateTime.new("12:00")
+		@hours_worked = (ending - starting) #(DateTime.parse(@end_time) - DateTime.parse(@start_time))
+	  @hours_worked
 	end
 
 	def write_to_log
-	  event = PStore.new("events.pstore")
-	  event.transaction do
-			event[log] = @log
-
-			event.commit
+	  @event.transaction do
+			@event[:event] ||= []
+			@event[:event] << @log
+			@event.commit
 		end
+	end
+
+	def get_events
+    @read_events = @event.transaction { @event.fetch(:event) }
+		@read_events
+	end
+
+  def display_events
+    get_events
+		puts @read_events
 	end
 
 end
