@@ -7,7 +7,7 @@ class LogIn
 	
 	def initialize(username)
 	  @employee = EmployeeUsernames.employee(username)  
-  	@admin_list = EmployeesList.admin_list
+  	@admin_list = EmployeesList.return_admin_list
 		puts "Welcome, #{@employee}."
 	end
 
@@ -27,16 +27,16 @@ class LogIn
 		  TimeLog.new(@employee).add_new_event
 		  puts "Thank you! Your time has been logged."	
 		elsif input == '2'
-		  'view hours'
+		  puts 'view hours'
 		elsif input == '3'
 			add_employee
 		elsif input == '4'
       display_client_list
 			add_client	
     elsif
-      'run monthly totals by employee'
+      puts 'run monthly totals by employee'
 		elsif
-      'run monthly totals by client'
+      puts 'run monthly totals by client'
 		end
   end
 
@@ -48,7 +48,7 @@ class LogIn
 	end
 
 	def display_client_list
-    ClientsList.return_list
+    ClientsList.display_list
 	end
 
 	def add_client

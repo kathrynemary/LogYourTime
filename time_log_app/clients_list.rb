@@ -12,15 +12,21 @@ class ClientsList
 			set_up_list
 		end	
 		@list.transaction do
+      @list[:name] ||= []
 			@list[:name] << input
 			@list.commit
     end
 	end
   
-	def self.return_list
-    read_file = @list.transaction { @list.fetch(:name) }
-	  read_file
-	end	
+	def self.get_list
+    @read_file = @list.transaction { @list.fetch(:name) }
+	  @read_file
+	end
+
+  def self.display_list
+		get_list
+	  puts @read_file
+	end
 
 end
 

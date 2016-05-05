@@ -15,7 +15,7 @@ describe ClientsList do
 	end
 
 	it "returns both clients" do
-		expect(ClientsList.return_list).to include('MegaCorp', 'MinorCorp')
+		expect(ClientsList.get_list).to include('MegaCorp', 'MinorCorp')
 	end
 
 end
