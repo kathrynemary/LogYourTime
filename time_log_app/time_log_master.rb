@@ -17,7 +17,7 @@ class TimeLog
 		get_end_time
     calculate_hours_worked
 	  get_work_type
-  	get_client
+  	check_if_needs_client
 		synthesize_info(@employee, @start_time, @end_time, @type_of_work, @client)
 		write_to_log
 	end
@@ -33,9 +33,17 @@ class TimeLog
   def get_work_type
 		@work_type = WorkTypeInterface.new.get_timecode 
   end	
-	
+
+  def check_if_needs_client
+		unless @work_type == 'paid time off'
+			get_client
+	  else
+			@client = "N/A"
+		end
+	end
+
   def get_client
-	  @client = NameInputInterface.new(ClientsList.list).get_name
+		@client = NameInputInterface.new(ClientsList.list).get_name
 	end
 
 	def synthesize_info(employee, start_time, end_time, type_of_work, client)
