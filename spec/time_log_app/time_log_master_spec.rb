@@ -30,3 +30,13 @@ describe TimeLog do
 end
 
 #error-handling for hours worked
+#
+#get start time
+#get end time
+#calculate hours worked (new class?)
+#get work type
+#check if needs client, then get client
+#synthesize info
+#write to log
+#
+#read from log, at least for purposes of testing
