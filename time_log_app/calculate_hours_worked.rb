@@ -4,7 +4,12 @@ class CalculateHours
 
   require 'date'
 
-  attr_reader :hours, :minutes
+  attr_reader :hours, :minutes, :total_minutes
+
+  def initialize(start, stop)
+    start_time(start)
+	  end_time(stop)
+	end
 
 	def start_time(input)
 	  @start_time = DateTime.parse(input)
@@ -15,7 +20,7 @@ class CalculateHours
 	end
 
 	def calculate_hours
-		total_minutes = ((@end_time - @start_time) * 24 * 60).to_i
+		@total_minutes = ((@end_time - @start_time) * 24 * 60).to_i
       if total_minutes < 0
 			  raise Errors::ArgumentError.new("The start time must be before the end time.")
 			end
