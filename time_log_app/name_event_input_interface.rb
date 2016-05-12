@@ -4,7 +4,7 @@ require_relative 'errors'
 
 class NameInputInterface
 
-  attr_reader :selection
+  attr_reader :selection, :names
 
   def initialize(names)
 	  @names = names

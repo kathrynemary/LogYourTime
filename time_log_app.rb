@@ -1,3 +1,4 @@
+require_relative 'time_log_app/calculate_hours_worked'
 require_relative 'time_log_app/clients_list'
 require_relative 'time_log_app/clients'
 require_relative 'time_log_app/employee_usernames'

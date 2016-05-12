@@ -1,14 +1,14 @@
 require_relative 'errors'
 require_relative 'employees_list'
 require_relative 'employee_usernames'
-require 'pstore'
+require 'yaml/store'
 
 class Employees
   
   attr_reader :list, :admins, :user_names
 
 	def initialize
-	  @list = []
+	  @list = [] 
 		@admins = []
 		@user_names = []
 	end

@@ -1,16 +1,13 @@
-require_relative 'time_input_interface'
-require_relative 'work_type_input_interface'
-require_relative 'name_event_input_interface'
-require_relative 'calculate_hours_worked'
-require 'PStore'
+require 'yaml/store'
 
 class TimeLog
 
-	attr_reader :start_time, :end_time, :minutes_worked, :log, :event, :work_type, :client
+	attr_accessor :start_time, :end_time, :minutes_worked, :log, :event, :work_type, :client
 
 	def self.new_event(employee)
 		@employee = employee
-	  @log = PStore.new("events.pstore")
+	  @log = YAML::Store.new("events.yml")
+	  @employee_log = YAML::Store.new("#{@employee}.yml")
 	end
 	
   def self.add_new_event
@@ -21,14 +18,23 @@ class TimeLog
   	check_if_needs_client
 		write_to_log
 	end
-
-	def self.stub_new_event
-	  @start_time = "April 1 2016, 8:00"
-		@end_time = "April 1 2016, 12:00"
+	
+	def self.stub_another_event
+	  @start_time = "October 3 2015, 10:30"
+		@end_time = "October 3 2015, 12:30"
     @work_type = "billable"
 		@client = "MegaCorp"
-    @minutes_worked = 240
-    write_to_log
+    @minutes_worked = 120
+		write_to_log
+	end
+
+	def self.stub_new_event
+	  @start_time = "April 26 2016, 9:00"
+		@end_time = "April 26 2016, 10:00"
+    @work_type = "billable"
+		@client = "AnonyCorp"
+    @minutes_worked = 60
+		write_to_log
 	end
 
 	def self.get_start_time
@@ -48,33 +54,38 @@ class TimeLog
 	end
 
   def self.check_if_needs_client
-		unless @work_type == 'paid time off'
-			get_client
-	  else
+		if @work_type == 'paid time off'
 			@client = "N/A"
+		else
+			get_client
 		end
+	end
+
+	def self.synthesize_info
+    @event = {'employee' => @employee, 'start' => @start_time, 'end' => @end_time, 'minutes_worked' => @minutes_worked, 'work_type' => @work_type, 'client' => @client} 
 	end
 
 	def self.write_to_log
-	  @log.transaction do
-			@log[:employee] ||= []
-			@log[:start] ||= []
-			@log[:end] ||= []
-			@log[:time_worked] ||= []
-			@log[:work_type] ||= []
-			@log[:client] ||= []
-			@log[:employee] << @employee
-			@log[:start] << @start_time
-			@log[:end] << @end_time
-			@log[:time_worked] << @hours_worked
-			@log[:work_type] << @work_type
-			@log[:client] << @client
+		synthesize_info
+		@log.transaction do
+			@log[@employee => @start_time] = @event
 			@log.commit
+		end
+		@employee_log.transaction do
+			@employee_log[@start_time] = @event
+			@employee_log.commit
 		end
 	end
 
+#Will display file in readable-ish manner.
+#  def self.get_event
+#		File.read("events.yml")  
+#		puts File.read("events.yml")
+#	end
+
   def self.get_event(key)
 	  @log.transaction do
+		  puts @log[key]
 		  @log[key]
 		end
 	end

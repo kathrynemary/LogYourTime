@@ -1,7 +1,7 @@
 require_relative 'employee_usernames'
 require_relative 'employees_list'
 require_relative 'clients_list'
-require 'PStore'
+require 'yaml/store'
 
 class LogIn
 
@@ -29,7 +29,7 @@ class LogIn
 		  TimeLog.new(@employee).add_new_event
 		  puts "Thank you! Your time has been logged."	
 		elsif input == '2'
-		  'view hours'
+		  display_employee_events
 		elsif input == '3'
 			add_employee
 		elsif input == '4'
@@ -58,6 +58,10 @@ class LogIn
 		puts "What is their name?"
 	  input = gets.chomp
 		client.add_new_client(input)
+	end
+
+	def display_employee_events
+    TimeLogReader.get_events(@employee)
 	end
   
 	def non_admin_options

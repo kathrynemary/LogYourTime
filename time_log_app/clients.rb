@@ -1,9 +1,14 @@
 require_relative 'errors'
 require_relative 'clients_list'
+require 'PStore'
 
 class Clients
 
-  def add_new_client(company_name)
+	def initialize
+	  @list = ClientsList.get_list
+	end
+
+	def add_new_client(company_name)
     double_check(company_name)
 		verify_input(company_name)
     ClientsList.add_name(company_name)

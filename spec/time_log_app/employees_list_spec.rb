@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Employees do
+describe EmployeesList do
 
   before :each do
 		@example_employees = Employees.new
@@ -33,10 +33,6 @@ describe Employees do
 
 	it "will tell you which are admins" do
     expect(EmployeesList.return_admin_list).to include('Herbert Doe') 
-	end
-
-	it "will include admins in overall list" do
-    expect((EmployeesList.return_list + EmployeesList.return_admin_list).empty?).to eq(false) 
 	end
 
 end

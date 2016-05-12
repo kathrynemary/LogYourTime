@@ -1,12 +1,12 @@
 require_relative 'employees'
-require 'PStore'
+require 'yaml/store'
 
 class EmployeesList
 
   attr_reader :list, :admin_list
 	
 	def self.set_up_list
-	  @list = PStore.new("employees_list.pstore")
+	  @list = YAML::Store.new("employees_list.yml")
 	end
 
 	def self.add_name(input)
@@ -14,6 +14,7 @@ class EmployeesList
 			set_up_list
 		end	
 		@list.transaction do
+      @list[:name] ||= []
 			@list[:name] << input
 			@list.commit
 		end
@@ -33,6 +34,7 @@ class EmployeesList
 			set_up_admin_list
 		end	
 		@admin_list.transaction do
+      @admin_list[:admin_name] ||= []
   		@admin_list[:admin_name] << input
 	  	@admin_list.commit
 	  end
