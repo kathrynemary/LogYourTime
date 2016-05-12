@@ -1,4 +1,5 @@
 require_relative '../time_log_app/time_log_master'
+require_relative '../time_log_app/time_log_totals'
 require_relative '../time_log_app/time_log_reader'
 require_relative '../time_log_app/calculate_hours_worked'
 require_relative '../time_log_app/time_log_master'

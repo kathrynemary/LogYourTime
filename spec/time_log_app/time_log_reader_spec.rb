@@ -4,7 +4,7 @@ describe TimeLogReader do
 
 	it "lists the events by employee" do
 	  TimeLogReader.get_events("Jane Doe")	
-    expect(TimeLogReader.tally).to eq(2)
+		expect(TimeLogReader.tally).to eq(2)
   end
 
   it "gets the current month" do
@@ -15,7 +15,7 @@ describe TimeLogReader do
   
 	it "gets the event month" do
 		TimeLogReader.get_event_month(0)
-    expect(TimeLogReader.event_month).to eq(4)
+    expect(TimeLogReader.event_month).to eq(5)
 		expect(TimeLogReader.event_year).to eq(2016)
 	end
 	
@@ -32,3 +32,7 @@ describe TimeLogReader do
 
 end
 
+#TimeLogReader.get_file("Jane Doe")
+#TimeLogReader.update_to_current_month
+#puts TimeLogReader.updated_file
+#
