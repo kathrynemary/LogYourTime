@@ -1,25 +1,27 @@
 require_relative 'clients'
-require 'PStore'
+require 'yaml/store'
 
 class ClientsList
 
   def self.set_up_list
-	  @list = PStore.new("clients_list.pstore")
+	  @list = YAML.load(File.open("clients_list.yml"))
 	end
 
 	def self.add_name(input)
     unless @list
 			set_up_list
 		end	
-		@list.transaction do
+		#@list.transaction do
       @list[:name] ||= []
 			@list[:name] << input
-			@list.commit
-    end
+		#	@list.commit
+   # end
 	end
   
 	def self.get_list
-    @read_file = @list.transaction { @list.fetch(:name) }
+    #@list.transaction do
+		  @read_file = @list[:name]	
+		#end
 	  @read_file
 	end
 

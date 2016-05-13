@@ -38,9 +38,21 @@ class LogIn
     elsif input == '5'
       'run monthly totals by employee'
 		elsif input == '6'
-      'run monthly totals by client'
+      get_client
 		end
   end
+
+	def get_client
+    ClientsList.new.display_list
+		puts "Which of these clients' hours would you like to view?"
+	  input = gets.chomp
+	  calculate_client_hours
+	end
+
+	def calculate_client_hours(input) 
+		TimeLogClientTotals.get_client_minutes_worked(client)
+		puts TimeLogClientTotals.sum
+	end
 
 	def add_employee
     employee = Employees.new
@@ -50,7 +62,7 @@ class LogIn
 	end
 
 	def display_client_list
-    ClientsList.display_list
+    ClientsList.new.display_list
 	end
 
 	def add_client

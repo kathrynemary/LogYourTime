@@ -1,11 +1,11 @@
 require_relative 'errors'
 require_relative 'clients_list'
-require 'PStore'
+require 'yaml/store'
 
 class Clients
 
 	def initialize
-	  @list = ClientsList.get_list
+    @list = YAML::Store.new("clients_list.yml")
 	end
 
 	def add_new_client(company_name)
@@ -23,11 +23,19 @@ class Clients
 	end
 
   def verify_input(name)
-		if @list.include? name
-			raise Errors::ArgumentError.new("That name is already in our records!")
-    else
-			name
+		@list.transaction do
+		if @list[:name].include?(name)
+				raise Errors::ArgumentError.new("That name is already in our records!")
+			else
+				name
+			end
 		end
 	end
+
+	def get_list
+		@list.transaction do
+      @list[:name]
+		end
+  end
 
 end
