@@ -50,7 +50,7 @@ class TimeLogReader
     get_current_month
 		get_number_of_events
 		@updated_file = @file.clone
-		(0..@tally).each do |number|
+		(0..@tally).each do |number| #change to @updated_file.each do |number|
 		  get_event_month(number)
 			if @event_month != @month || @event_year != @year
 				@updated_file.delete(@updated_file.keys[number])
