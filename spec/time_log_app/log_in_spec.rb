@@ -29,10 +29,10 @@ describe LogIn do
 		expect(example_login.employee).to eq("John Doe")
 	end
 
-  it "should let an admin run totals by employee" do
-		example_login = LogIn.new('ilovecabbage')  
+  it "should not let a non-admin run totals by employee" do
+		example_login = LogIn.new('janeiscool')  
 		allow(example_login).to receive(:admin_options) {"6"} 
- 		expect(example_login.display_options).to eq('run monthly totals by client')
+	  expect { example_login.select_action(3)}.to raise_error(Errors::ArgumentError)
 	end
 
 end

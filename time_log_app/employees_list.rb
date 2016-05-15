@@ -26,7 +26,7 @@ class EmployeesList
 	end	
 
 	def self.set_up_admin_list
-	  @admin_list = PStore.new("employee_admin_list.pstore") 
+	  @admin_list = YAML::Store.new("employee_admin_list.yml")
 	end
 
 	def self.add_admin_name(input)

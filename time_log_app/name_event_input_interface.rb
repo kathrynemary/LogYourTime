@@ -10,11 +10,6 @@ class NameInputInterface
 	  @names = names
 	end
 
-	def list_names 
-	  names = @names
-		names
-	end
-
   def get_name
 	  input = ask_name
 		verify_input(input)
