@@ -4,8 +4,8 @@ require 'yaml/store'
 
 class EmployeeUsernames
 	
-  def self.set_up_file
-		@list = YAML::Store.new("employee_usernames.yml")
+  def self.set_up_file(file="employee_usernames.yml")
+		@list = YAML::Store.new(file)
 	end
 
 	def self.set_up_username(employee, username)
@@ -32,9 +32,6 @@ class EmployeeUsernames
 			  if key.has_value?(employee)
 				  @answer = key[:username]
 				end
-				unless @answer		
-		      raise Errors::ArgumentError.new("We don't have a record of that employee!") 
-			  end
 			end
 		end
 		@answer
@@ -52,6 +49,7 @@ class EmployeeUsernames
 			 	end
 			end
 		end	
+    @answer
 	end
 
 end
