@@ -15,7 +15,8 @@ class WorkTypeInterface
 			input
 		else
 			raise Errors::ArgumentError.new("that is wrong! you entered #{input}")
-	  end
+      get_timecode
+		end
 	end
 
 	def ask_timecode
