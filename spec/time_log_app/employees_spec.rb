@@ -3,7 +3,7 @@ require_relative '../../time_log_app/employees'
 describe Employees do
 
   it "lets you add a new employee" do
-		example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml", "example_employee_usernames.yml")
 		allow(example).to receive(:ask_user_name) {'johnnyboy'}
 		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
@@ -13,7 +13,7 @@ describe Employees do
 	end
 
 	it "won't let you add the same employee twice." do
-    example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 		allow(example).to receive(:ask_user_name) {'igloo'}
 		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
@@ -25,7 +25,7 @@ describe Employees do
   end
 
 	it "won't let you add the same username twice." do
-    example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml")  
 		allow(example).to receive(:ask_user_name) {'igloo'}
 		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
@@ -37,7 +37,7 @@ describe Employees do
   end
 
 	it "lets you 2 new employees" do
-	  example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml")   
 		allow(example).to receive(:ask_user_name) {'johnnyboy'}
 		allow(example).to receive (:admin?) {"y"}
 		allow(example).to receive (:double_check) {"y"}
@@ -50,7 +50,7 @@ describe Employees do
 	end
 
 	it "will raise an error if you don't verify the name " do
-    example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
 		allow(example).to receive (:admin?) {"n"}
 		allow(example).to receive (:double_check) {"N"}
@@ -59,7 +59,7 @@ describe Employees do
   end
   
 	it "can add an employee to an Admins list" do
-		example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 		allow(example).to receive (:double_check) {"Y"}
     allow(example).to receive (:admin?) {'y'}
 		example.push_admin('Herbert Doe')
@@ -68,7 +68,7 @@ describe Employees do
 	end
 
   it "should add an employee to EmployeesList" do
-		example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 		allow(example).to receive (:double_check) {"Y"}
     allow(example).to receive (:admin?) {'n'}
 		example.add_new_employee('John Doe')
@@ -76,7 +76,7 @@ describe Employees do
   end
   
 	it "should add an admin to EmployeesList" do
-		example = Employees.new
+		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 		allow(example).to receive (:double_check) {"Y"}
     allow(example).to receive (:admin?) {'Y'}
 		example.add_new_employee('John Smith')

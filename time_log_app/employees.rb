@@ -1,4 +1,5 @@
 require_relative 'errors'
+require_relative 'file_reader'
 require_relative 'employees_list'
 require_relative 'employee_usernames'
 require 'yaml/store'
@@ -7,10 +8,10 @@ class Employees
   
   attr_reader :list, :admins, :user_names
 
-	def initialize
-	  @list = [] 
-		@admins = []
-		@user_names = []
+	def initialize(list="employees_list.yml", admin_list="employee_admin_list.yml", user="employee_usernames.yml")
+    @list = list
+	  @admin_list = admin_list
+		@user_names = user
 	end
 
   def add_new_employee(name)
@@ -18,7 +19,6 @@ class Employees
 		verify_input(name)
     get_user_name(name)
 		admin?(name)
-		@list.push(name)
 		EmployeesList.add_name(name)
 	end
 
@@ -26,7 +26,7 @@ class Employees
 	  user = ask_user_name
     double_check(user)
 		verify_user_name(user)
-		@user_names.push(user) 
+		#@user_names.push(user) 
 	  EmployeeUsernames.set_up_username(name, user)
 	end
 
@@ -41,21 +41,32 @@ class Employees
 		answer = gets.upcase.chomp
 		if answer == "N"
 		  raise Errors::ArgumentError.new("Okay, never mind then!")
+      get_employee_name
 		end
 	end
 
-  def verify_input(name)
-		if @list.include? name
-			raise Errors::ArgumentError.new("That name is already in our records!")
-    else
-			name
-		end
+	def get_employee_name
+		puts "What is the name?"
+		input = gets.chomp
+	  add_new_employee(input)
+	end
+
+  def verify_input(name) 
+		#@list.transaction do
+			if @list.include? name
+				raise Errors::ArgumentError.new("That name is already in our records!")
+				get_employee_name
+			else
+				name
+			end
+		#end
 	end
   
 	def verify_user_name(name)
 		if @user_names.include? name
 			raise Errors::ArgumentError.new("That username is already in our records!")
-    else
+      get_user_name(name)
+	 	else
 			name
 		end
 	end
@@ -71,8 +82,8 @@ class Employees
 	end
 
 	def push_admin(name)
-		puts "you answered yes"
-		@admins.push(name)
+		puts "You answered yes."
+		#@admins.push(name)
 		EmployeesList.add_admin_name(name)
 	end
 
