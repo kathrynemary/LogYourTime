@@ -37,6 +37,7 @@ class TimeInputInterface
 			input
 		else
 			raise Errors::ArgumentError.new("#{input} is an invalid time.")
+      get_time
 		end
 	end
 	
@@ -45,6 +46,7 @@ class TimeInputInterface
 			input
 		else
 			raise Errors::ArgumentError.new("#{input} is an invalid date.")
+		  get_date
 		end
 	end
 
