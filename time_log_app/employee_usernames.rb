@@ -10,12 +10,18 @@ class EmployeeUsernames
 
 	def self.set_up_username(employee, username)
 		@user = {:employee => employee, :username => username}
-    set_up_file
-	 	add_to_list
+    unless @list
+			set_up_file
+		end
+		add_to_list
 	end
 
 	def self.add_to_list
-    @list.transaction do
+    unless @list
+			set_up_file
+		end
+
+		@list.transaction do
 			@list[:user] ||= []
 			@list[:user] << @user
 			@list.commit
