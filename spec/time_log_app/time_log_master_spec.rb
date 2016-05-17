@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TimeLog do
 	
-	it "should throw an error if you try to submit a log for the same time twice" do
+	it "should write to example_events.yml" do
   	TimeLog.set_up("John Doe", "example_events.yml")
 		allow(TimeLog).to receive(:client) {"MegaCorp"}  
 		allow(TimeLog).to receive(:work_type) {"billable"}  
@@ -12,10 +12,7 @@ describe TimeLog do
 		allow(TimeLog).to receive(:employee) {"John Doe"} 	
 		TimeLog.write_to_log
 
-		TimeLog.set_up("John Doe", "example_events.yml")
-	  allow(TimeLog).to receive(:start_time) {"may 1, 2016 8:00"} 
-		allow(TimeLog).to receive(:end_time) {"may 1, 2016 10:00"} 
-		expect { TimeLog.check_times }.to raise_error(Errors::ArgumentError)
+		expect(TimeLog.get_event).to include("John Doe") 
 	end
 
  #	before :each do

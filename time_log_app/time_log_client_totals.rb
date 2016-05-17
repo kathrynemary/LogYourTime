@@ -6,25 +6,26 @@ class TimeLogClientTotals
     @client_events
 	end
 
-	def self.get_client_minutes_worked(client)
-    @client = client
+	def self.get_client_minutes_worked(client, file="events.yml")
+    get_file(file)
+		@client = client
 		get_client_events(@client)
 		get_event_minutes
 	end
 	
-	def self.get_client_events(client)
-		get_file
+	def self.get_client_events(client, file="events.yml")
+		get_file(file)
 		filter_events_by_client(client)
     get_this_months_client_events
  	end
 
-	def self.get_file
-    @file = YAML.load(File.open("events.yml"))
+	def self.get_file(file)
+		@file = YAML.load(File.open(file))
 	end
 
 	def self.filter_events_by_client(client)
     @client_events = @file.clone
-    @client_events.keys.each do |number|
+		@client_events.keys.each do |number|
       if @client_events[number]["client"] != client
 				@client_events.delete(number)
       end
@@ -36,7 +37,7 @@ class TimeLogClientTotals
     get_events_for_this_month
 	end
 
-	def self.get_current_month #this is a duplicate of time_log_reader
+	def self.get_current_month 
     @month = Time.now.month
 		@year = Time.now.year
 	end
@@ -50,15 +51,15 @@ class TimeLogClientTotals
 		end
 	end
 
-	def self.get_event_month(number) #also a duplicate of time_log_reader
+	def self.get_event_month(number)
     @event = @client_events[number]["start"]
 		@event_month = Date.parse(@event).month
     @event_year = Date.parse(@event).year
 	end
 
   def self.get_event_minutes
-    @total_minutes = 0
-		@client_events.keys.each do |number|
+		@total_minutes = 0
+		@client_events.values.each do |number|
 			mins = @client_events[number]["minutes_worked"].to_i
 			@total_minutes += mins 
     end

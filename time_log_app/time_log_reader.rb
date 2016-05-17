@@ -1,32 +1,36 @@
 require_relative 'clients_list'
-require 'yaml'
+require 'yaml/store'
 
 class TimeLogReader
 
   def self.get_employee_events(employee, file="events.yml")
     @employee = employee
-		get_file(file)
+    @file = YAML.load(File.open(file))
+		clone_file
     filter_by_employee
+		update_to_current_month
 	end
   
 	def self.get_events(employee, file="events.yml")
     @employee = employee
-		get_file(file)
+    @file = YAML.load(File.open(file))
+		clone_file
     update_to_current_month
 	end
 
-	def self.get_file(file)
-    @file = YAML.load(File.open(file)) #filter by employee!
+	def self.clone_file
 		@updated_file = @file.clone
 	end
 
 	def self.filter_by_employee
-		@updated_file[:event].each do |number| 
-			unless @updated_file[:event][:employee] == @employee
-				@updated_file.delete(@updated_file.keys[number])
-			end
-		end
-		@updated_file
+		if @updated_file.length > 1
+			@updated_file[:event]
+				unless @updated_file[:event][:employee] == @employee
+					@updated_file.delete(@updated_file[:event])
+				end
+		else
+      puts @updated_file.values 
+	  end
 	end
 
 	def self.get_current_month

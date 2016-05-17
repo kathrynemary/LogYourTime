@@ -1,23 +1,46 @@
 require_relative 'employee_usernames'
 require_relative 'employees_list'
 require_relative 'clients_list'
+require_relative 'time_log_reader'
 require 'yaml/store'
 
 class LogIn
-
-  attr_reader :employee
 	
-	def initialize(username)
-	  @employee = EmployeeUsernames.employee(username)  
-  	@admin_list = EmployeesList.return_admin_list
+	def log_in(username) 
+		@employee = EmployeeUsernames.employee(username)  
+		get_admin_list
 		puts "Welcome, #{@employee}."
+    display_options
+	end
+
+	def check_username(username)
+		get_username_list
+	  unless (@username_list).include?(username)
+			raise Errors::ArgumentError.new("That is not a valid username! Please try again.") 
+		  get_username 
+		end
+	end
+
+	def get_username
+    puts "Please enter your username:"
+		answer = gets.chomp
+		LogIn.new(answer)
+	end
+	
+  def employee
+		@employee
+	end
+
+	def get_admin_list 
+		@admin_list = (File.open("employee_admin_list.yml")).each_line
 	end
 
 	def display_options
   	if @admin_list.include?(@employee)
 	    answer = admin_options
 			verify_admin_input(answer)
-		else
+		elsif
+
 	    answer = non_admin_options
       verify_non_admin_input(answer)
 		end
@@ -26,27 +49,39 @@ class LogIn
 
   def select_action(input)
     if input == '1'
-		  TimeLog.new(@employee).add_new_event
-		  puts "Thank you! Your time has been logged."	
+			log_time
 		elsif input == '2'
-		  display_employee_events
+		  get_employee_events
 		elsif input == '3'
-			add_employee
+			exit_program	
 		elsif input == '4'
-      display_client_list
+			add_employee
+		elsif input == '5'
 			add_client	
-    elsif input == '5'
+    elsif input == '6'
       get_employee
-		elsif input == '6'
+		elsif input == '7'
       get_client
 		end
-  end
+    display_options
+	end
 
 	def get_client
-    ClientsList.new.display_list
+    display_client_list 
 		puts "Which of these clients' hours would you like to view?"
 	  input = gets.chomp
 	  calculate_client_hours
+	end
+  
+	def exit_program
+		puts "Thank you!"
+		exit
+	end
+	
+  def log_time
+		puts "Please enter the start time and date, followed by the end time and date."  
+		TimeLog.add_new_event(@employee)
+		puts "Thank you! Your time has been logged."
 	end
 
 	def calculate_client_hours(input) 
@@ -79,33 +114,35 @@ class LogIn
 		client.add_new_client(input)
 	end
 
-	def display_employee_events
-    TimeLogReader.get_events(@employee)
+	def get_employee_events
+    puts TimeLogReader.get_employee_events(@employee)
 	end
   
 	def non_admin_options
-    puts "press 1 to log time, or 2 to view this month's hours"
+    puts "Press 1 to log time, 2 to view this month's hours, or 3 to exit."
 	  gets.chomp
 	end
 
   def verify_non_admin_input(input)
-		if input =~ /^[12]/
+		if input =~ /^[123]/
 			input
 		else
-			raise Errors::ArgumentError.new("that is wrong! you entered #{input}")
-	  end
+			raise Errors::ArgumentError.new("That input is not valid. Let's try again.")
+	    display_options
+		end
 	end
   
 	def admin_options
-    puts "press 1 to log time, 2 to view your for the month, 3 to add a new employee, 4 to add a new client, 5 to run the month's totals by employee, or 6 to run the month's totals by client"
+    puts "Press 1 to log time, 2 to view your for the month, 3 to exit, 4 to add a new employee, 5 to add a new client, 6 to run the month's totals by employee, or 7 to run the month's totals by client"
 	  gets.chomp
 	end
   
 	def verify_admin_input(input)
-		if input =~ /^[123456]/
+		if input =~ /^[1234567]/
 			input
 		else
-			raise Errors::ArgumentError.new("that is wrong! you entered #{input}")
+			raise Errors::ArgumentError.new("That is wrong! you entered #{input}.")
+			display_options
 	  end
 	end
 

@@ -36,7 +36,7 @@ class StartMenu
   def log_in_menu
 		puts "Please enter your username."
 		input = gets.chomp
-    LogIn.new(input)
+    LogIn.new.log_in(input)
 	end
 
 end

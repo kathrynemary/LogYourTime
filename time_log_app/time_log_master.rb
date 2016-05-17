@@ -5,15 +5,13 @@ class TimeLog
 
 	def self.set_up(employee, file="events.yml")
 		@employee = employee
-		@file = file
-	  @log = YAML::Store.new(@file)
+	  @log = YAML::Store.new(file)
 	end
 	
   def self.add_new_event(employee)
     set_up(employee)	
 		get_start_time
 		get_end_time
-    check_times
 		calculate_time_worked
 		get_work_type
   	check_if_needs_client
@@ -33,27 +31,12 @@ class TimeLog
 	  @minutes_worked
 	end
 
-	def self.check_times
-		@other_events = TimeLogReader.get_employee_events(@employee, @file)
-	  check_overlap
-
-  end
-
-  def self.check_overlap
-	  @other_events.each do |time|	
-			if (@start_time - time[:end]) * (time[:start] - @end_time) > 0
-			  raise Errors::ArgumentError.new("You have already logged these hours. Let's start over.")
-        add_new_event(@employee)
-			end
-		end
-	end
-
 	def self.get_work_type
 	  @work_type = WorkTypeInterface.new.get_timecode
 	end
 
   def self.check_if_needs_client
-		if @work_type == 'paid time off'
+		if @work_type != 'paid time off'
 			@client = "N/A"
 		else
 			get_client
@@ -83,10 +66,12 @@ class TimeLog
 		end
 	end
 
-#  def self.get_event(key)
-#    @file = FileReader.read_file(@log)
-#    puts @file.key
-#		@file.key
+  #def self.get_event
+   # if @log
+		#	@log.transaction do
+		#		@log[:name].each {|key, value| puts key, value} 
+		#	end
+	  #end	
 #		@log.transaction do
 #		  puts @log[key]
 #		  @log[key]

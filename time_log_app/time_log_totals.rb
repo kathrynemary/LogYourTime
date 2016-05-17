@@ -17,8 +17,8 @@ class TimeLogTotals
 	 @sum
   end	 
  
-	def self.get_start_time
-		TimeLogReader.get_events("Jane Doe")
+	def self.get_start_time(employee)
+		TimeLogReader.get_employee_events(employee)
     @file = TimeLogReader.updated_file
     @start = @file[@file.keys[0]]["start"]
 	end
