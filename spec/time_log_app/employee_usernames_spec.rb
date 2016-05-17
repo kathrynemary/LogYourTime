@@ -10,7 +10,7 @@ describe EmployeeUsernames do
 	  EmployeeUsernames.set_up_file("example_employee_usernames.yml")	
 #		example_john.add_new_employee('John Doe') 
 	
-		expect(EmployeeUsernames.username('John Doe')).to eq('johnithan')
+		expect(EmployeeUsernames.username('John Doe')).to eq('johnnyboy')
 	end
   
   it "returns an employee for a John's username" do
