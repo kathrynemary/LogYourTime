@@ -26,7 +26,6 @@ class Employees
 	  user = ask_user_name
     double_check(user)
 		verify_user_name(user)
-		#@user_names.push(user) 
 	  EmployeeUsernames.set_up_username(name, user)
 	end
 
@@ -51,19 +50,16 @@ class Employees
 	  add_new_employee(input)
 	end
 
-  def verify_input(name) 
-		#@list.transaction do
-			if @list.include? name
+  def verify_input(name)
+		(File.open(@list)).each_line do |line|
+			if line.include? name
 				raise Errors::ArgumentError.new("That name is already in our records!")
-				get_employee_name
-			else
-				name
-			end
-		#end
+		  end
+		end
 	end
   
 	def verify_user_name(name)
-		if @user_names.include? name
+		if File.read(@user_names).include? name
 			raise Errors::ArgumentError.new("That username is already in our records!")
       get_user_name(name)
 	 	else
@@ -83,7 +79,6 @@ class Employees
 
 	def push_admin(name)
 		puts "You answered yes."
-		#@admins.push(name)
 		EmployeesList.add_admin_name(name)
 	end
 
