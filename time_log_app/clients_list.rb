@@ -4,7 +4,8 @@ require 'yaml/store'
 class ClientsList
 
   def self.set_up_list(list="clients_list.yml")
-	  @list = YAML::Store.new(list)
+		@list = YAML::Store.new(list)
+	
 	end
 
 	def self.add_name(input)
@@ -24,7 +25,11 @@ class ClientsList
 		end	
 		
 		@list.transaction do
-			@read_file = @list[:name].each	
+			if @list[:name].empty?
+				@read_file = "There are no clients yet."
+		  else	
+				@read_file = @list[:name].each	
+			end
 		end
     @read_file
 	end
