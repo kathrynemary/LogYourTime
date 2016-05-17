@@ -8,7 +8,7 @@ class LogIn
 	
 	def log_in(username) 
 		@employee = EmployeeUsernames.employee(username)  
-		get_admin_list
+		get_admin_list(file="employee_admin_list.yml")
 		puts "Welcome, #{@employee}."
     display_options
 	end
@@ -31,16 +31,15 @@ class LogIn
 		@employee
 	end
 
-	def get_admin_list 
-		@admin_list = (File.open("employee_admin_list.yml")).each_line
+	def get_admin_list(file) 
+		@admin_list = (File.open(file)).each_line
 	end
 
 	def display_options
   	if @admin_list.include?(@employee)
-	    answer = admin_options
+	 		answer = admin_options
 			verify_admin_input(answer)
-		elsif
-
+		else
 	    answer = non_admin_options
       verify_non_admin_input(answer)
 		end
