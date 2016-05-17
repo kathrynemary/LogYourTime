@@ -5,8 +5,8 @@ class EmployeesList
 
   attr_reader :list, :admin_list
 	
-	def self.set_up_list
-	  @list = YAML::Store.new("employees_list.yml")
+	def self.set_up_list(file="employees_list.yml")
+	  @list = YAML::Store.new(file)
 	end
 
 	def self.add_name(input)
@@ -21,12 +21,15 @@ class EmployeesList
 	end
   
 	def self.return_list
-    read_file = @list.transaction { @list.fetch(:name) }
-	  read_file
+    if @list
+			@list.transaction do
+				@list[:name].each {|key, value| puts key, value } 
+			end
+		end
 	end	
 
-	def self.set_up_admin_list
-	  @admin_list = YAML::Store.new("employee_admin_list.yml")
+	def self.set_up_admin_list(file="employee_admin_list.yml")
+	  @admin_list = YAML::Store.new(file)
 	end
 
 	def self.add_admin_name(input)
@@ -41,8 +44,11 @@ class EmployeesList
 	end
 
 	def self.return_admin_list
-    read_file = @admin_list.transaction { @admin_list.fetch(:admin_name) }
-	  read_file
+    if @admin_list
+			@admin_list.transaction do
+				@admin_list[:admin_name].each {|key, value| puts key, value } 
+			end
+		end
 	end	
 
 end
