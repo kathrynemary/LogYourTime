@@ -24,10 +24,11 @@ class TimeLogReader
 
 	def self.filter_by_employee
 		if @updated_file.length > 1
-			@updated_file[:event]
-				unless @updated_file[:event][:employee] == @employee
-					@updated_file.delete(@updated_file[:event])
+			@updated_file.values.each do |number|
+				unless @updated_file.values.include?(@employee)
+					@updated_file.delete(@updated_file[number])
 				end
+			end
 		else
       puts @updated_file.values 
 	  end

@@ -28,7 +28,7 @@ describe TimeLogReader do
 	
 	it "filters events for John Doe " do
 	  TimeLogReader.get_employee_events("John Doe", "example_events.yml")
-		expect(TimeLogReader.filter_by_employee.length).to eq(1)
+		expect(TimeLogReader.filter_by_employee.length).to eq(2)
 	end
 
 end
