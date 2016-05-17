@@ -3,31 +3,30 @@ require 'yaml/store'
 
 class ClientsList
 
-  def self.set_up_list
-	  @list = YAML.load(File.open("clients_list.yml"))
+  def self.set_up_list(list="clients_list.yml")
+	  @list = YAML::Store.new(list)
 	end
 
 	def self.add_name(input)
     unless @list
 			set_up_list
 		end	
-		#@list.transaction do
+		@list.transaction do
       @list[:name] ||= []
 			@list[:name] << input
-		#	@list.commit
-   # end
+			@list.commit
+    end
 	end
   
 	def self.get_list
-    #@list.transaction do
-		  @read_file = @list[:name]	
-		#end
-	  @read_file
-	end
-
-  def self.display_list
-		get_list
-	  puts @read_file
+    unless @list
+			set_up_list
+		end	
+		
+		@list.transaction do
+			@read_file = @list[:name].each	
+		end
+    @read_file
 	end
 
 end
