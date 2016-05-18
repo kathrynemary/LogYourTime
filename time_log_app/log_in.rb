@@ -33,7 +33,11 @@ class LogIn
 	end
 
 	def get_admin_list(file) 
-		@admin_list = YAML.load(File.open(file)).values
+    unless File.zero?(file)
+			@admin_list = YAML.load(File.open(file)).values
+		else
+			@admin_list = []
+    end
 	end
 
 	def display_options
