@@ -8,8 +8,9 @@ class TimeLogTotals
 
   def self.employee_totals(employee)
 		@employee = employee
-		TimeLogReader.get_events(@employee)
-	  total_hours	
+		@events = TimeLogReader.get_events(@employee)
+	  @file = TimeLogReader.file
+		total_time	
 	  @sum = "#{@hours} hours and #{@minutes} minutes worked."
 	end
 
@@ -23,11 +24,14 @@ class TimeLogTotals
     @start = @file[@file.keys[0]]["start"]
 	end
 
-	def self.total_hours
+	def self.total_time
     @total_minutes = 0
-		@file.keys.each do |number|
-			mins = @file[number]["minutes_worked"].to_i
-			@total_minutes += mins 
+		@file.each do |key, value|
+	    value.each do |key2, value2|		
+				if key2 == "minutes_worked"
+			  	@total_minutes += value2
+				end
+			end
     end
 		get_hours_from_minutes
 	end

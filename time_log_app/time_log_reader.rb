@@ -72,4 +72,7 @@ class TimeLogReader
 		@event_year
 	end
 
+	def self.file
+		@file
+	end
 end

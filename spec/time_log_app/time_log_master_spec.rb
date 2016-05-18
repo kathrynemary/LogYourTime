@@ -1,19 +1,6 @@
 require 'spec_helper'
 
 describe TimeLog do
-	
-	it "should write to example_events.yml" do
-  	TimeLog.set_up("John Doe", "example_events.yml")
-		allow(TimeLog).to receive(:client) {"MegaCorp"}  
-		allow(TimeLog).to receive(:work_type) {"billable"}  
-		allow(TimeLog).to receive(:minutes_worked) {120}  
-		allow(TimeLog).to receive(:end_time) {"may 1, 2016 10:00"}  
-		allow(TimeLog).to receive(:start_time) {"may 1, 2016 8:00"}  
-		allow(TimeLog).to receive(:employee) {"John Doe"} 	
-		TimeLog.write_to_log
-
-		expect(TimeLog.get_event).to include("John Doe") 
-	end
 
  #	before :each do
 	#	TimeLog.new_event('Herbert Doe')

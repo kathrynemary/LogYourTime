@@ -90,10 +90,11 @@ class LogIn
 	end
 
 	def get_employee
-    EmployeesList.new.display_list
+    EmployeesList.return_list
 		puts "Which of these employees' hours would you like to view?"
 	  input = gets.chomp
 		TimeLogTotals.employee_totals(input)	
+	  puts TimeLogTotals.sum
 	end
 	
 	def add_employee
@@ -116,6 +117,8 @@ class LogIn
 
 	def get_employee_events
     puts TimeLogReader.get_employee_events(@employee)
+		TimeLogTotals.employee_totals(@employee)	
+	  puts TimeLogTotals.sum
 	end
   
 	def non_admin_options

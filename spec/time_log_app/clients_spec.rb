@@ -12,7 +12,7 @@ describe Clients do
 #    example.add_new_client('NewCompany')
 		allow(example).to receive (:double_check) {"y"}
 #		example.add_new_client('OldCompany')
-	expect(ClientsList.get_list).to include('NewCompany', 'OldCompany')
+	expect(ClientsList.get_list.values.flatten).to include('NewCompany', 'OldCompany')
 	end
 
 	it "won't let you add the same client twice." do
@@ -23,7 +23,7 @@ describe Clients do
 
 	it "will raise an error if you don't verify the name " do
   	example = Clients.new("example_clients_list.yml")
-		allow(example).to receive (:double_check) {"N"}
+		allow(example).to receive (:double_check) {'N'}
 		expect { example.add_new_client('New') }.to raise_error(Errors::ArgumentError)
   end
   

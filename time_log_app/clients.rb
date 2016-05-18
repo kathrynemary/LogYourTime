@@ -5,7 +5,8 @@ require 'yaml/store'
 class Clients
 
 	def initialize(file="clients_list.yml")
-    @list = YAML.load(File.open(file)).values
+	  @file = file
+		@list = YAML.load(File.open(@file))
 	end
 
 	def add_new_client(company_name)
@@ -30,13 +31,17 @@ class Clients
 	end
 
   def verify_input(name)
-	  @list.each do |value|
-			if value.include?(name)
-			  raise Errors::ArgumentError.new("That name is already in our records!")
-		    get_client_name	
-		  else
-				name
+		unless File.zero?(@file)	
+			@list.each do |key, value|
+				if value.flatten.include?(name)
+					raise Errors::ArgumentError.new("That name is already in our records!")
+					get_client_name	
+				else
+					name
+				end
 			end
+		else
+			name
 		end
 	end
 

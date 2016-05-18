@@ -36,7 +36,7 @@ class TimeLog
 	end
 
   def self.check_if_needs_client
-		if @work_type != 'paid time off'
+		if @work_type != 'billable'
 			@client = "N/A"
 		else
 			get_client
@@ -45,7 +45,7 @@ class TimeLog
 
   def self.get_client
     puts "Which of these clients did you work for?"
-		ClientsList.display_list
+		ClientsList.get_list
 		@client = gets.chomp
 	end
 

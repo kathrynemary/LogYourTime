@@ -21,10 +21,12 @@ class EmployeesList
 	end
   
 	def self.return_list
-    if @list
-			@list.transaction do
-				@list[:name].each {|key, value| puts key, value } 
-			end
+    unless @list
+			set_up_list
+		end
+			
+		@list.transaction do
+			@list[:name].each {|key, value| puts key, value } 
 		end
 	end	
 
