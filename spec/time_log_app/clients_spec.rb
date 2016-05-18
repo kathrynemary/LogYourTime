@@ -29,4 +29,3 @@ describe Clients do
   
 end
 
-

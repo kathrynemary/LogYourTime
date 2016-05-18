@@ -5,7 +5,7 @@ require 'yaml/store'
 class Clients
 
 	def initialize(file="clients_list.yml")
-    @list = YAML::Store.new(file)
+    @list = YAML.load(File.open(file)).values
 	end
 
 	def add_new_client(company_name)
@@ -17,7 +17,6 @@ class Clients
 	def double_check(name)
 		puts "You entered '#{name}'. Is this correct? Y/N"
 		answer = gets.upcase.chomp
-		puts answer ########################
 		unless answer == "Y"
 		  raise Errors::ArgumentError.new("Okay, let's try again.")
 		  get_client_name
@@ -31,11 +30,11 @@ class Clients
 	end
 
   def verify_input(name)
-		@list.transaction do
-		if @list[:name].include?(name)
-			raise Errors::ArgumentError.new("That name is already in our records!")
-		  get_client_name	
-		else
+	  @list.each do |value|
+			if value.include?(name)
+			  raise Errors::ArgumentError.new("That name is already in our records!")
+		    get_client_name	
+		  else
 				name
 			end
 		end
