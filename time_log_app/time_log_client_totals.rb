@@ -9,11 +9,11 @@ class TimeLogClientTotals
 	def self.get_client_minutes_worked(client, file="events.yml")
     get_file(file)
 		@client = client
-		get_client_events(@client)
+		get_client_events(@client, file)
 		get_event_minutes
 	end
 	
-	def self.get_client_events(client, file="events.yml")
+	def self.get_client_events(client, file)
 		get_file(file)
 		filter_events_by_client(client)
     get_this_months_client_events
@@ -59,9 +59,12 @@ class TimeLogClientTotals
 
   def self.get_event_minutes
 		@total_minutes = 0
-		@client_events.values.each do |number|
-			mins = @client_events[number]["minutes_worked"].to_i
-			@total_minutes += mins 
+		@client_events.each do |key, value|
+	    value.each do |key2, value2|		
+				if key2 == "minutes_worked"
+			  	@total_minutes += value2
+		    end
+			end
     end
 		get_hours_and_minutes
 	  @sum = "#{@hours} hours and #{@minutes} minutes worked."
