@@ -8,17 +8,9 @@ class LogIn
 	
 	def log_in(username) 
 		@employee = EmployeeUsernames.employee(username)  
-		get_admin_list(file="employee_admin_list.yml")
+		check_admin_list(file="employee_admin_list.yml")
 		puts "Welcome, #{@employee}."
     display_options
-	end
-
-	def check_username(username)
-		get_username_list
-	  unless (@username_list).include?(username)
-			raise Errors::ArgumentError.new("That is not a valid username! Please try again.") 
-		  get_username 
-		end
 	end
 
 	def get_username
@@ -30,14 +22,23 @@ class LogIn
   def employee
 		@employee
 	end
+  
+	def check_admin_list(file)
+    get_admin_list(file)
+		@admin_list.each do |value|
+		 if value.include?(@employee.to_s)
+			  @is_admin = true
+			end
+		end
+	end
 
 	def get_admin_list(file) 
-		@admin_list = (File.open(file)).each_line
+		@admin_list = YAML.load(File.open(file)).values
 	end
 
 	def display_options
-  	if @admin_list.include?(@employee)
-	 		answer = admin_options
+  	if @is_admin == true
+			answer = admin_options
 			verify_admin_input(answer)
 		else
 	    answer = non_admin_options
