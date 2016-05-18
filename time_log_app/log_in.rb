@@ -70,7 +70,7 @@ class LogIn
     display_client_list 
 		puts "Which of these clients' hours would you like to view?"
 	  input = gets.chomp
-	  calculate_client_hours
+	  calculate_client_hours(input)
 	end
   
 	def exit_program
@@ -84,7 +84,7 @@ class LogIn
 		puts "Thank you! Your time has been logged."
 	end
 
-	def calculate_client_hours(input) 
+	def calculate_client_hours(client) 
 		TimeLogClientTotals.get_client_minutes_worked(client)
 		puts TimeLogClientTotals.sum
 	end
@@ -104,7 +104,7 @@ class LogIn
 	end
 
 	def display_client_list
-    ClientsList.new.display_list
+    ClientsList.get_list
 	end
 
 	def add_client
