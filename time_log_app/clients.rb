@@ -19,7 +19,7 @@ class Clients
 		puts "You entered '#{name}'. Is this correct? Y/N"
 		answer = gets.upcase.chomp
 		unless answer == "Y"
-		  raise Errors::ArgumentError.new("Okay, let's try again.")
+	  	puts "Okay, let's try again."
 		  get_client_name
 		end
 	end
