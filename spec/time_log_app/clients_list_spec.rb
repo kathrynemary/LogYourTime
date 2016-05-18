@@ -16,13 +16,8 @@ describe ClientsList do
 
 	it "returns both clients" do
     ClientsList.set_up_list("example_clients_list.yml")
-		expect(ClientsList.get_list).to include('MegaCorp')
-		expect(ClientsList.get_list).to include('MinorCorp')
-	end
-	
-	it "adds a client" do
-#		ClientsList.add_name("NewCorp")
-		expect(ClientsList.get_list.size).to eq(9)
+		expect(ClientsList.get_list.values.flatten).to include('MegaCorp')
+		expect(ClientsList.get_list.values.flatten).to include('MinorCorp')
 	end
 
 end
