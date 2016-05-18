@@ -12,7 +12,7 @@ describe Employees do
 	  EmployeeUsernames.set_up_file("example_employee_usernames.yml")	
 #		allow(example).to receive(:ask_user_name) {'johnithan'}
 #		allow(example).to receive (:admin?) {"y"}
-#		allow(example).to receive (:double_check) {"y"}
+		allow(example).to receive (:double_check) {"y"}
 #		example.add_new_employee('John Doe')
 
     expect(EmployeesList.return_list).to include('John Doe')
@@ -23,7 +23,7 @@ describe Employees do
 	  example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 #		allow(example).to receive(:ask_user_name) {'iglue'}
 #		allow(example).to receive (:admin?) {"n"}
-#		allow(example).to receive (:double_check) {"y"}
+		allow(example).to receive (:double_check) {"y"}
 		expect { example.add_new_employee('Coldest Person') }.to raise_error(Errors::ArgumentError)
   end
 
@@ -32,7 +32,7 @@ describe Employees do
 		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml")  
 #		allow(example).to receive(:ask_user_name) {'igloo'}
 #		allow(example).to receive (:admin?) {"y"}
-#		allow(example).to receive (:double_check) {"y"}
+		allow(example).to receive (:double_check) {"y"}
 		expect { example.add_new_employee('Less-Cold Person') }.to raise_error(Errors::ArgumentError)
   end
 
@@ -40,7 +40,7 @@ describe Employees do
 		example = Employees.new("example_employees_list.yml", "example_employee_admin_list.yml") 
 #		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
 #		allow(example).to receive (:admin?) {"n"}
-#		allow(example).to receive (:double_check) {"N"}
+		allow(example).to receive (:double_check) {"N"}
 		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
   end
   
