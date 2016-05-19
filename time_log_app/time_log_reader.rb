@@ -5,8 +5,7 @@ class TimeLogReader
 
   def self.get_employee_events(employee, file="events.yml")
     @employee = employee
-    @file = YAML.load(File.open(file))
-		clone_file
+		get_file(file)
     filter_by_employee
 		update_to_current_month
 	end
@@ -16,6 +15,15 @@ class TimeLogReader
     @file = YAML.load(File.open(file))
 		clone_file
     update_to_current_month
+	end
+
+  def self.get_file(file)
+    unless File.zero?(file)
+      @file = YAML.load(File.open(file))
+			clone_file
+		else
+      @updated_file = []
+		end
 	end
 
 	def self.clone_file
