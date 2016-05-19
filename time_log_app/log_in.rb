@@ -7,7 +7,7 @@ require 'yaml/store'
 class LogIn
 	
 	def log_in(username) 
-		@employee = EmployeeUsernames.employee(username)  
+		set_employee(username)
 		check_admin_list(file="employee_admin_list.yml")
 		puts "Welcome, #{@employee}."
     display_options
@@ -18,11 +18,19 @@ class LogIn
 		answer = gets.chomp
 		LogIn.new(answer)
 	end
-	
+
+  def set_employee(username)
+		@employee = EmployeeUsernames.employee(username)  
+	end
+
   def employee
 		@employee
 	end
   
+  def is_admin
+		@is_admin
+	end
+
 	def check_admin_list(file)
     get_admin_list(file)
 		@admin_list.each do |value|
