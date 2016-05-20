@@ -1,5 +1,4 @@
 require_relative 'errors'
-require_relative 'file_reader'
 require_relative 'employees_list'
 require_relative 'employee_usernames'
 require 'yaml/store'
@@ -24,7 +23,7 @@ class Employees
 
   def get_user_name(name)
 	  user = ask_user_name
-    double_check(user)
+    double_check_user(user)
 		verify_user_name(user)
 	  EmployeeUsernames.set_up_username(name, user)
 	end
@@ -39,8 +38,17 @@ class Employees
 		puts "You entered '#{name}'. Is this correct? Y/N"
 		answer = gets.upcase.chomp
 		if answer == "N"
-		  raise Errors::ArgumentError.new("Okay, never mind then!")
+		  puts "Okay, never mind then!"
       get_employee_name
+		end
+	end
+  
+	def double_check_user(name)
+		puts "You entered '#{name}'. Is this correct? Y/N"
+		answer = gets.upcase.chomp
+		if answer == "N"
+		  puts "Okay, never mind then!"
+		  ask_user_name
 		end
 	end
 
