@@ -2,7 +2,7 @@ Introduction
 * I like drawing out maps of how the different classes relate to each other so that I can better visualize what I have written. In this document, I will go over the class maps I have drawn, and some of my thoughts on the successes and problems of those classes.
 
 employees_list
-[employees_list class map] ("https://bitbucket.org/heyitskathryne/time_log_app/raw/master/reference_pictures/employees_list.jpg")
+[employees_list class map] ("https://bitbucket.org/heyitskathryne/time_log_app/raw/master/reference/reference_pictures/employees_list.jpg")
 * This class writes new names to the lists of employees and admins, as well as returning those lists when called.
 * I set up this class so that does not intertwine with other classes. It refers to the .yml files that contain lists of employees and employee admins, but those are the only other files that are needed.
 
