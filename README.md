@@ -8,4 +8,5 @@
 --Tests--
 #Some tests are commented out. This is because I needed to check whether certain examples could be instantiated successfully, but have checks to ensure that the same user is not added more than once. For example, after an employee has been added, the list of employees will return that employee with the 'add employee' method commented out. If it tries to add the employee again every time the test suite is run, an error message will arise.
 
-
+--More Information--
+#For more information, see the reference file in the folder of the same name.
