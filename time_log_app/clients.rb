@@ -9,6 +9,10 @@ class Clients
 		@list = YAML.load(File.open(@file))
 	end
 
+  def file
+		@file
+	end
+
 	def add_new_client(company_name)
 		double_check(company_name)
 		verify_input(company_name)
