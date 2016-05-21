@@ -5,8 +5,7 @@ class ClientsList
 
   def self.set_up_list(list="clients_list.yml")
 		@file = list
-		@list = YAML::Store.new(list)
-	
+		@list = YAML::Store.new(list)	
 	end
 
 	def self.add_name(input)
