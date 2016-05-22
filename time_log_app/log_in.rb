@@ -97,8 +97,7 @@ class LogIn
 	end
 
 	def calculate_client_hours(client) 
-		TimeLogClientTotals.get_client_minutes_worked(client)
-		puts TimeLogClientTotals.sum
+		puts TimeLogClientTotals.get_client_minutes_worked(client)
 	end
 
 	def get_employee
