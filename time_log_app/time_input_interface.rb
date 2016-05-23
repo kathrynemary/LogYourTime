@@ -4,31 +4,31 @@ class TimeInputInterface
 
   attr_reader :time, :date, :date_and_time
 
-	def get_time
-	  time_input = ask_time
+	def get_time(parameter)
+	  time_input = ask_time(parameter)
 		verify_time_input(time_input)
 	  @time = time_input
 	end
 
-  def ask_time
-	  puts "What time?"
+  def ask_time(parameter)
+	  puts "What time of day did this work #{parameter}? Please use the format __:__, e.g. 08:00."
 		gets.chomp
 	end
 
-  def get_date
-    date_input = ask_date
+  def get_date(parameter)
+    date_input = ask_date(parameter)
 		verify_date_input(date_input)
 		@date = date_input 
 	end
 
-	def ask_date
-	  puts "What date?"
+	def ask_date(parameter)
+	  puts "What date did this work #{parameter}? Please use the format Month Day, Year, e.g. April 1, 2000."
 		gets.chomp
 	end
 
-  def get_time_and_date
-    time = get_time
-		date = get_date
+  def get_time_and_date(parameter)
+    time = get_time(parameter)
+		date = get_date(parameter)
   	@date_and_time = (date + " " +  time) 
   end
 
