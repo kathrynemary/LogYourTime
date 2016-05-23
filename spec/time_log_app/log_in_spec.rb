@@ -3,9 +3,9 @@ require 'spec_helper'
 describe LogIn do
 	
 	before :each do
-		EmployeeUsernames.set_up_file("spec/spec_data_files/example_log_in_employee_usernames.yml")
-	  EmployeeUsernames.set_up_username("Idina Menzel", "iwasinrent")
-	  EmployeeUsernames.set_up_username("Ron Swanson", "libertarian")
+		EmployeeUsernamesList.set_up_file("spec/spec_data_files/example_log_in_employee_usernames.yml")
+	  EmployeeUsernamesList.set_up_username("Idina Menzel", "iwasinrent")
+	  EmployeeUsernamesList.set_up_username("Ron Swanson", "libertarian")
 		EmployeesList.add_name("Idina Menzel")
 		EmployeesList.add_name("Ron Swanson")
 	  EmployeesList.set_up_admin_list("spec/spec_data_files/example_log_in_admin_employees_list.yml")

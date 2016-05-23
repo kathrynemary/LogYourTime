@@ -20,7 +20,7 @@ class LogIn
 	end
 
   def set_employee(username)
-		@employee = EmployeeUsernames.employee(username)  
+		@employee = EmployeeUsernamesList.employee(username)  
 	end
 
   def employee
