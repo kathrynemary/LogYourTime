@@ -27,8 +27,8 @@ describe Employees do
 
 	it "will raise an error if you don't verify the name" do
 		example = Employees.new("spec/spec_data_files/example_employees_employees_list.yml") 
-#		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
-#		allow(example).to receive (:admin?) {"n"}
+		allow(example).to receive(:ask_user_name) {'thejaneinspain'}
+		allow(example).to receive (:admin?) {"n"}
 		allow(example).to receive (:double_check) {"N"}
 		expect { example.add_new_employee('John Doe') }.to raise_error(Errors::ArgumentError)
   end
