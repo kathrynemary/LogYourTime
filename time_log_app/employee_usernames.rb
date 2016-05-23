@@ -1,61 +1,43 @@
-require_relative 'employees'
-require_relative 'errors'
-require 'yaml/store'
-
 class EmployeeUsernames
-	
-  def self.set_up_file(file="employee_usernames.yml")
-		@list = YAML::Store.new(file)
+  
+	def self.set_up_list(user="employee_usernames.yml")
+    YAML::Store.new(user)
+		@user_names = user
 	end
 
-	def self.set_up_username(employee, username)
-		@user = {:employee => employee, :username => username}
-    unless @list
-			set_up_file
+  def self.set_up_username(name)
+    unless @user_names
+			set_up_list
 		end
-		add_to_list
+
+		user = ask_user_name
+    double_check_user(user)
+		verify_user_name(user)
+	  EmployeeUsernamesList.set_up_username(name, user)
 	end
 
-	def self.add_to_list
-    unless @list
-			set_up_file
-		end
+  def self.ask_user_name
+	  puts "What would you like the username to be?"
+	  answer = gets.chomp	
+		answer
+	end
 
-		@list.transaction do
-			@list[:user] ||= []
-			@list[:user] << @user
-			@list.commit
+	def self.double_check_user(name)
+		puts "You entered '#{name}'. Is this correct? Y/N"
+		answer = gets.upcase.chomp
+		if answer == "N"
+		  puts "Okay, never mind then!"
+		  ask_user_name
 		end
 	end
-	
-	def self.username(employee)
-		unless @list
-			set_up_file
+  
+	def self.verify_user_name(name)
+		if File.read(@user_names).include? name
+			raise Errors::ArgumentError.new("That username is already in our records!")
+      get_user_name(name)
+	 	else
+			name
 		end
-
-		@list.transaction do
-		  @list[:user].each do |key, value| 
-			  if key.has_value?(employee)
-				  @answer = key[:username]
-				end
-			end
-		end
-		@answer
-	end
-	
-	def self.employee(username)
-		unless @list
-			set_up_file
-		end
-
-		@list.transaction do
-		  @list[:user].each do |key, value| 
-			  if key.has_value?(username)
-				  @answer = key[:employee]
-			 	end
-			end
-		end	
-    @answer
 	end
 
 end
