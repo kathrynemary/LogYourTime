@@ -19,25 +19,43 @@ class TimeLog
 	end
 	
 	def self.get_start_time
-    @start_time = TimeInputInterface.new.get_time_and_date
-  end
-
-	def self.get_end_time
-		@end_time = TimeInputInterface.new.get_time_and_date
+    answer = TimeInputInterface.new.get_time_and_date("start")
+    set_start_time(answer)
 	end
 
+	def self.set_start_time(input)
+		@start_time = input
+	end
+
+	def self.get_end_time
+		answer = TimeInputInterface.new.get_time_and_date("end")
+	  set_end_time(answer)
+	end
+
+	def self.set_end_time(input)
+		@end_time = input
+	end
 	def self.calculate_time_worked
 		@minutes_worked = CalculateHours.new(@start_time, @end_time).total_minutes 
 	  @minutes_worked
 	end
 
-	def self.get_work_type
-	  @work_type = WorkTypeInterface.new.get_timecode
+	def self.minutes_worked
+		@minutes_worked
 	end
 
-  def self.check_if_needs_client
+	def self.get_work_type
+	  answer = WorkTypeInterface.new.get_timecode
+	  set_work_type(answer)
+	end
+
+  def self.set_work_type(input)
+	  input = @work_type
+	end
+
+	def self.check_if_needs_client
 		if @work_type != 'billable'
-			@client = "N/A"
+			set_client("N/A")
 		else
 			get_client
 		end
@@ -46,7 +64,12 @@ class TimeLog
   def self.get_client
     puts "Which of these clients did you work for?"
 		ClientsList.get_list
-		@client = gets.chomp
+		answer = gets.chomp
+	  set_client(answer)
+	end
+
+  def self.set_client(input)
+		@client = input
 	end
 
 	def self.synthesize_event
@@ -66,16 +89,5 @@ class TimeLog
 		end
 	end
 
-  #def self.get_event
-   # if @log
-		#	@log.transaction do
-		#		@log[:name].each {|key, value| puts key, value} 
-		#	end
-	  #end	
-#		@log.transaction do
-#		  puts @log[key]
-#		  @log[key]
-#		end
-#	end
 
 end
