@@ -11,6 +11,7 @@ class TimeLogClientTotals
 		@client = client
 		get_client_events(@client, file)
 		get_event_minutes
+    @sum
 	end
 	
 	def self.get_client_events(client, file)

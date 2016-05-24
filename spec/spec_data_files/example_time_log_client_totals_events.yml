@@ -1,0 +1,15 @@
+---
+? Special Person: May 3 2016, 10:30
+: employee: Special Person
+  start: May 3 2016, 10:30
+  end: May 3 2016, 13:10
+  minutes_worked: 160
+  work_type: 
+  client: ExampleCompany
+? Unspecial Person: May 3 2016, 10:30
+: employee: Unspecial Person
+  start: May 3 2016, 10:30
+  end: May 3 2016, 12:30
+  minutes_worked: 120
+  work_type: 
+  client: AnotherCompany
