@@ -8,14 +8,7 @@ class TimeLogReader
 		get_file(file)
     filter_by_employee
 		update_to_current_month
-	end
-  
-	def self.get_events(employee, file="events.yml")
-    @employee = employee
-    @file = YAML.load(File.open(file))
-		clone_file
-    update_to_current_month
-	end
+	end 
 
   def self.get_file(file)
     unless File.zero?(file)
@@ -38,8 +31,8 @@ class TimeLogReader
 				end
 			end
 		else
-      puts @updated_file.values 
-	  end
+			puts @updated_file.values 
+		end
 	end
 
 	def self.get_current_month

@@ -7,7 +7,11 @@ class TimeLog
 		@employee = employee
 	  @log = YAML::Store.new(file)
 	end
-	
+
+	def self.employee
+	  @employee
+	end
+
   def self.add_new_event(employee)
     set_up(employee)	
 		get_start_time
