@@ -4,12 +4,12 @@ class StartMenu
 
   attr_reader :list_length
 	
-	def initialize
+	def self.load_menu
 		get_employee_list
     evaluate_list
 	end
 
-  def evaluate_list
+  def self.evaluate_list
 		if @list_length != 0
 			log_in_menu
 		else
@@ -17,7 +17,7 @@ class StartMenu
 		end
 	end
 
-  def get_employee_list
+  def self.get_employee_list
 	  @list_length = 0	
 		(File.open("employees_list.yml")).each_line do |line|
 			@list_length += 1
@@ -25,7 +25,7 @@ class StartMenu
 		@list_length
 	end
 
-  def start_menu
+  def self.start_menu
 	  puts "Welcome! You are the first employee."	
 		puts "What is your name?"
 	  input = gets.chomp
@@ -33,10 +33,14 @@ class StartMenu
     StartMenu.new
 	end
   
-  def log_in_menu
+  def self.log_in_menu
 		puts "Please enter your username."
 		input = gets.chomp
     LogIn.new.log_in(input)
+	end
+
+  def self.list_length
+		@list_length
 	end
 
 end
