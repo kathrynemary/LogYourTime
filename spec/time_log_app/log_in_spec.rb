@@ -19,10 +19,10 @@ describe LogIn do
 		expect(example_login.is_admin).to eq(true)
 	end
 
-  it "should raise an error if a non-admin selects an admin-only option." do
-		example_login = LogIn.new
-		allow(example_login).to receive(:non_admin_options) {4}
-	  expect { example_login.log_in('iwasinrent') }.to raise_error(Errors::ArgumentError)
+  it "should redirect bad input" do
+		expect { LogIn.new.invalid_input }.to raise_error { |error|
+			expect(error).to be_a(Errors::DuplicateNameError)
+		}
 	end
-
+ 
 end

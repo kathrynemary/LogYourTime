@@ -127,9 +127,7 @@ class LogIn
 	end
 
 	def get_employee_events
-    puts TimeLogReader.get_employee_events(@employee)
-		TimeLogTotals.employee_totals(@employee)	
-	  puts TimeLogTotals.sum
+		TimeLogEmployeeMinutes.employee_totals(@employee)	
 	end
   
 	def non_admin_options
@@ -141,8 +139,7 @@ class LogIn
 		if input =~ /^[123]/
 			input
 		else
-			raise Errors::ArgumentError.new("That input is not valid. Let's try again.")
-	    display_options
+		  invalid_input
 		end
 	end
   
@@ -155,9 +152,15 @@ class LogIn
 		if input =~ /^[1234567]/
 			input
 		else
-			raise Errors::ArgumentError.new("That is wrong! you entered #{input}.")
-			display_options
-	  end
+	    invalid_input
+		end
 	end
+		
+  def invalid_input	
+	    raise Errors::DuplicateNameError.new
+#		rescue
+#			puts "That input is not valid! Please try again." 
+#		  display_options
+  end
 
 end
