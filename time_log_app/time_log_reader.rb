@@ -20,19 +20,20 @@ class TimeLogReader
 	end
 
 	def self.clone_file
-		@updated_file = @file.clone
+		@updated_file = @file.values.clone
 	end
 
 	def self.filter_by_employee
-		if @updated_file.length > 1
-			@updated_file.values.each do |number|
-				unless @updated_file.values.include?(@employee)
-					@updated_file.delete(@updated_file[number])
+		@updated_file.each do |value|
+			value.each do |key2, value2|
+				if key2 == "employee"
+					if value2 != @employee
+						@updated_file.delete(value)
+					end
 				end
 			end
-		else
-			puts @updated_file.values 
 		end
+
 	end
 
 	def self.get_current_month
@@ -45,16 +46,18 @@ class TimeLogReader
 		@updated_file.each do |number| 
 		  get_event_month(number)
 			if @event_month != @month || @event_year != @year
-				@updated_file.delete(@updated_file.keys[number])
+				puts "mismatch!"
+				@updated_file.delete(number)
+			else
 			end
 		end
   	@updated_file
 	end
 
 	def self.get_event_month(number)
-    @event = @file.values.to_s
+    @event = @updated_file.flatten.fetch(0).values_at("start").to_s
 		@event_month = Date.parse(@event).month
-    @event_year = Date.parse(@event).year
+		@event_year = Date.parse(@event).year
 	end
 
   def self.month
@@ -76,4 +79,5 @@ class TimeLogReader
 	def self.file
 		@file
 	end
+
 end
