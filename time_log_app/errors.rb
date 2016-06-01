@@ -1,4 +1,4 @@
 module Errors
-	class ArgumentError < StandardError
+	class DuplicateNameError < StandardError
 	end
 end

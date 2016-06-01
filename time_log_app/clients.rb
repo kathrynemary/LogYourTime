@@ -30,6 +30,7 @@ class Clients
 	
 	def get_client_name
 		puts "What is the name?"
+		require 'pry'; binding.pry
 		input = gets.chomp
 	  add_new_client(input)
 	end
@@ -38,8 +39,7 @@ class Clients
 		unless File.zero?(@file)	
 			@list.each do |key, value|
 				if value.flatten.include?(name)
-					raise Errors::ArgumentError.new("That name is already in our records!")
-					get_client_name	
+				  invalid_input
 				else
 					name
 				end
@@ -48,5 +48,12 @@ class Clients
 			name
 		end
 	end
+
+  def invalid_input
+		raise Errors::DuplicateNameError.new
+		#rescue
+		#	puts "That name is already in our records!"
+		#	get_client_name	V
+  end
 
 end
