@@ -51,9 +51,6 @@ class Clients
 
   def invalid_input
 		raise Errors::DuplicateNameError.new
-		#rescue
-		#	puts "That name is already in our records!"
-		#	get_client_name	V
   end
 
 end

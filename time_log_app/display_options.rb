@@ -12,7 +12,7 @@ class DisplayOptions
 		end
 			rescue
 				re_try_input
-	  SelectAction.new.selection(input)
+	  SelectAction.new(@employee).selection(input)
 	  display_options(@employee, @type)
 	end
 

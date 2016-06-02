@@ -44,9 +44,6 @@ class Employees
 
 	def name_already_in_use
 	  	raise Errors::DuplicateNameError.new
- #   rescue
-#			puts "That name is already in our records!"
-#      get_new_name
 	end
 
   def get_new_name
