@@ -1,4 +1,4 @@
-require_relative '../../time_log_app/work_type_input_interface'
+require 'spec_helper'
 
 describe WorkTypeInterface do
 
