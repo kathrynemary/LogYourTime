@@ -15,7 +15,9 @@ describe CalculateHours do
 	end
   
 	it "should return an error for a start time after an end time" do
-	  expect { CalculateHours.new("April 2 2016 8:00", "April 1 2016 12:30") }.to raise_error(Errors::ArgumentError) 
+	  expect { CalculateHours.new.wrong_time_input }.to raise_error{ |error|
+			expect(error).to be_a(StandardError)
+		}	
 	end
 
 end

@@ -36,10 +36,23 @@ class Employees
 
   def verify_input(name)
 		(File.open(@list)).each_line do |line|
-			if line.include? name
-				raise Errors::ArgumentError.new("That name is already in our records!")
-		  end
+			if line.include?(name)
+		    name_already_in_use
+			end
 		end
+	end
+
+	def name_already_in_use
+	  	raise Errors::DuplicateNameError.new
+ #   rescue
+#			puts "That name is already in our records!"
+#      get_new_name
+	end
+
+  def get_new_name
+	  puts "What name would you like to add?"
+		answer = gets.chomp
+		add_new_employee(answer)
 	end
 
 	def admin?(name)

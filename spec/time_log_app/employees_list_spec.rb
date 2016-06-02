@@ -6,6 +6,7 @@ describe EmployeesList do
     EmployeesList.set_up_list("spec/spec_data_files/example_employees_list_employees_list.yml")
     EmployeesList.add_name("John Doe")
 		EmployeesList.add_name("Eugene O'Reilley")
+		input = StringIO.new("test.rb")
 		expect(EmployeesList.return_list).to include('John Doe', "Eugene O'Reilley")
 	end
 

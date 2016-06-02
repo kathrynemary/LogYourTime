@@ -11,12 +11,19 @@ class WorkTypeInterface
 	end
 	
   def verify_timecode_input(input)
-		if input =~ /^[123]/
-			input
+    if
+			input =~ /^[123]/
+		  input
 		else
-			raise Errors::ArgumentError.new("that is wrong! you entered #{input}")
-      get_timecode
+			wrong_timecode_input
 		end
+	end
+
+	def wrong_timecode_input
+	  	raise Errors::StandardError.new
+		rescue
+			puts "That is not an option! Please try again."
+      get_timecode
 	end
 
 	def ask_timecode

@@ -30,7 +30,7 @@ class StartMenu
 		puts "What is your name?"
 	  input = gets.chomp
     Employees.new.add_new_employee(input)
-    StartMenu.new
+    StartMenu.load_menu
 	end
   
   def self.log_in_menu

@@ -36,18 +36,30 @@ class TimeInputInterface
     if input =~ /\d+:\d\d+/
 			input
 		else
-			raise Errors::ArgumentError.new("#{input} is an invalid time.")
-      get_time
+		  invalid_time_format
 		end
+	end
+
+	def invalid_time_format
+			raise Errors::StandardError.new
+		rescue
+			puts "That is not a valid time."
+      get_time
 	end
 	
 	def verify_date_input(input)
     if DateTime.parse(input) <= Date.today 
 			input
 		else
-			raise Errors::ArgumentError.new("#{input} is an invalid date.")
-		  get_date
+		  invalid_date_format
 		end
 	end
+		
+  def invalid_date_format	
+	    raise Errors::StandardError.new
+	  rescue
+			puts "That is not a valid date."
+		  get_date
+  end
 
 end
