@@ -1,15 +1,29 @@
 ---
-? Special Person: 
-: employee: Special Person
-  start: 
-  end: 
-  minutes_worked: 
-  work_type: 
-  client: 
 ? Special Person: May 3 2016, 10:30
 : employee: Special Person
   start: May 3 2016, 10:30
   end: May 3 2016, 12:30
+  minutes_worked: 120
+  work_type: 
+  client: MegaCorp
+? Unspecial Person: May 3 2016, 10:30
+: employee: Unspecial Person
+  start: May 3 2016, 10:30
+  end: May 3 2016, 12:30
+  minutes_worked: 120
+  work_type: 
+  client: MegaCorp
+? Special Person: 2016-06-01, 10:30
+: employee: Special Person
+  start: 2016-06-01, 10:30
+  end: 2016-06-01, 12:30
+  minutes_worked: 120
+  work_type: 
+  client: MegaCorp
+? Unspecial Person: 2016-06-01, 10:30
+: employee: Unspecial Person
+  start: 2016-06-01, 10:30
+  end: 2016-06-01, 12:30
   minutes_worked: 120
   work_type: 
   client: MegaCorp

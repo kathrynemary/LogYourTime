@@ -6,21 +6,125 @@
   :username: igloo
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: k
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: fff
+- :employee: EmployeeUsernames
+  :username: d
+- :employee: EmployeeUsernames
+  :username: g
+- :employee: EmployeeUsernames
+  :username: y
+- :employee: EmployeeUsernames
+  :username: y
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: ggg
+- :employee: EmployeeUsernames
+  :username: ee
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: eeeeee
+- :employee: EmployeeUsernames
+  :username: y
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: j
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: h
+- :employee: EmployeeUsernames
+  :username: oo
+- :employee: EmployeeUsernames
+  :username: i
 - :employee: Coldest Person
   :username: igloo
-- :employee: John Doe
-  :username: f
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
 - :employee: Coldest Person
   :username: igloo
+- :employee: EmployeeUsernames
+  :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
+- :employee: EmployeeUsernames
+  :username: "\t\tallow(EmployeeUsernames).to receive (:ask_user_name) {\"example\"}"
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
+- :employee: EmployeeUsernames
+  :username: "\t\tallow(EmployeeUsernames).to receive (:ask_user_name) {\"example\"}"
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
+- :employee: EmployeeUsernames
+  :username: "\t\tallow(EmployeeUsernames).to receive (:ask_user_name) {\"example\"}"
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'
+- :employee: EmployeeUsernames
+  :username: "\t\tallow(EmployeeUsernames).to receive (:ask_user_name) {\"example\"}"
+- :employee: EmployeeUsernames
+  :username: ''
+- :employee: EmployeeUsernames
+  :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
+- :employee: EmployeeUsernames
+  :username: '  before :each do'
+- :employee: EmployeeUsernames
+  :username: describe EmployeeUsernames do
+- :employee: EmployeeUsernames
+  :username: require 'spec_helper'

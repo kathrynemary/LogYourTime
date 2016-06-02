@@ -7,14 +7,14 @@ describe TimeLog do
 	end
 
 	it "writes to the employees list" do
-		TimeLog.set_start_time("May 2 2016, 8:00")
-    TimeLog.set_end_time("May 2 2016, 12:00")
+		TimeLog.set_start_time("#{FindCurrentMonth.get_date}, 8:00")
+    TimeLog.set_end_time("#{FindCurrentMonth.get_date}, 12:00")
 		TimeLog.calculate_time_worked
     
 		expect(TimeLog.minutes_worked).to eq(240)
 	end
  
-  it "" do	
+  it "calculates time worked given all inputs" do	
     TimeLog.set_start_time("October 3 2015, 10:30")
 		TimeLog.set_end_time("October 3 2015, 12:30")
     TimeLog.set_work_type("billable")
@@ -23,6 +23,10 @@ describe TimeLog do
 		TimeLog.synthesize_event
 		TimeLog.write_to_log
 		expect(TimeLog.minutes_worked).to eq(120)
+	end
+
+  it "returns the employee name" do
+    expect(TimeLog.employee).to eq("Neu Person")
 	end
 
 end
