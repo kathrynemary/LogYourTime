@@ -25,13 +25,17 @@ class TimeLogClientTotals
 	end
 
 	def self.filter_events_by_client(client)
-    @client_events = @file.clone
-		@client_events.keys.each do |number|
-      if @client_events[number]["client"] != client
-				@client_events.delete(number)
+		@client_events = @file.clone
+		@client_events.each do |number|
+			number.each do |key|
+			  key.each do |key2, value2|
+				  if key2 == "client" && value2 != client
+						@client_events.delete(number)
+					end
+				end
       end
 		end
-	end	
+  end
 	
 	def self.get_this_months_client_events
     get_current_month 
