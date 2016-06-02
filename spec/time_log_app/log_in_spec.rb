@@ -12,17 +12,24 @@ describe LogIn do
 #	  EmployeesList.add_admin_name("Ron Swanson")
 	end
 
-	it "should not raise an error if an admin selects an admin-only option." do
+	it "should get the employee from the username" do 
+	  example = LogIn.new
+		example.set_employee('libertarian')
+	  expect(example.employee).to eq("Ron Swanson")
+	end
+	
+	it "should correctly classify an admin employee" do
 		example_login = LogIn.new
 	  example_login.set_employee('libertarian')
-		example_login.check_admin_list("spec/spec_data_files/example_log_in_admin_employees_list.yml")
-		expect(example_login.is_admin).to eq(true)
+		example_login.check_admin_list("spec/spec_data_files/example_display_options_admin_employees_list.yml")
+		expect(example_login.employee_type).to eq("admin")
 	end
-
-  it "should redirect bad input" do
-		expect { LogIn.new.invalid_input }.to raise_error { |error|
-			expect(error).to be_a(Errors::DuplicateNameError)
-		}
+	
+	it "should correctly classify a non-admin employee" do
+		example_login = LogIn.new
+	  example_login.set_employee('iwasinrent')
+		example_login.check_admin_list("spec/spec_data_files/example_display_options_admin_employees_list.yml")
+		expect(example_login.employee_type).to eq("non-admin")
 	end
  
 end
