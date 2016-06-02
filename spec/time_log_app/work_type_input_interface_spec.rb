@@ -31,12 +31,12 @@ describe WorkTypeInterface do
 		expect(@example.timecode).to eq('paid time off')
 	end
 
-  it "should raise an error for invalid timecode input" do
-		allow(@example).to receive(:ask_timecode) {4}
-		expect { @example.get_timecode }.to raise_error(Errors::ArgumentError)
+  it "should redirect from the wrong_input method" do
+		allow(@example).to receive(:ask_timecode) {'3'}
+		@example.wrong_timecode_input
+		expect(@example.timecode).to eq('paid time off') 
 	end
 
 end
 
-#separate thing that takes all the input from the interface classes and passes it to time_log_master
 
