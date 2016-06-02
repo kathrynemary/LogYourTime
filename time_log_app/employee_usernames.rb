@@ -33,12 +33,18 @@ class EmployeeUsernames
   
 	def self.verify_user_name(name)
 		if File.read(@user_names).include? name
-			raise Errors::ArgumentError.new("That username is already in our records!")
-      get_user_name(name)
-	 	else
+	 	  already_in_use
+		else
 			name
 		end
 	end
+
+	def self.already_in_use
+			raise Errors::StandardError.new
+		rescue
+			puts "That username is already in our records!"
+      set_up_username(name)
+  end
 
 end
 
