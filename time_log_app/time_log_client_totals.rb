@@ -24,19 +24,6 @@ class TimeLogClientTotals
 		@file = YAML.load(File.open(file))
 	end
 
-	def self.filter_events_by_client(client)
-		@client_events = @file.clone
-		@client_events.each do |number|
-			number.each do |key|
-			  key.each do |key2, value2|
-				  if key2 == "client" && value2 != client
-						@client_events.delete(number)
-					end
-				end
-      end
-		end
-  end
-	
 	def self.get_this_months_client_events
     get_current_month 
     get_events_for_this_month
@@ -47,25 +34,34 @@ class TimeLogClientTotals
 		@year = Time.now.year
 	end
 
-	def self.get_events_for_this_month
-    @client_events.keys.each do |number|
-	    get_event_month(number)
-			if @event_month != @month || @event_year != @year
-				@client_events.delete(number)
-      end
-		end
+	def self.get_event_month(number)
+		@event_month = Date.parse(number.to_s).month
+    @event_year = Date.parse(number.to_s).year
 	end
 
-	def self.get_event_month(number)
-    @event = @client_events[number]["start"]
-		@event_month = Date.parse(@event).month
-    @event_year = Date.parse(@event).year
+	def self.filter_events_by_client(client)
+		@client_events = @file.clone
+		@client_events = @client_events.map do |key|
+		  key[1].has_key?("client")
+			  key[1].keep_if { key[1].has_value?(client) }  
+		end
+	end
+	
+	def self.get_events_for_this_month
+		@client_events.map do |number|
+	    if number.has_key?("start")
+				get_event_month(number.values_at("start"))
+				if @event_month != @month || @event_year != @year
+					@client_events.delete(number)
+				end
+			end
+		end
 	end
 
   def self.get_event_minutes
 		@total_minutes = 0
-		@client_events.each do |key, value|
-	    value.each do |key2, value2|		
+		@client_events.each do |key|
+	    key.each do |key2, value2|		
 				if key2 == "minutes_worked"
 			  	@total_minutes += value2
 		    end
