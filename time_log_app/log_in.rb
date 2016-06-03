@@ -4,7 +4,7 @@ class LogIn
 		set_employee(username)
 		check_admin_list(file="employee_admin_list.yml")
 		puts "Welcome, #{@employee}."
-    display_options(@employee, @employee_type)
+    DisplayOptions.display_options(@employee, @employee_type)
 	end
 
   def set_employee(username)
