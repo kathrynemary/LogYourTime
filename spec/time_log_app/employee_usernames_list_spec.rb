@@ -9,7 +9,7 @@ describe EmployeeUsernamesList do
 
 	it "returns a username for john" do
 		EmployeeUsernamesList.set_up_file("spec/spec_data_files/example_employee_usernames_employee_usernames.yml")	
-    #EmployeeUsernamesList.set_up_username("John Doe", "johnnyboy")
+ #   EmployeeUsernamesList.set_up_username("John Doe", "johnnyboy")
 
 		expect(EmployeeUsernamesList.username('John Doe')).to eq('johnnyboy')
 	end
@@ -20,7 +20,7 @@ describe EmployeeUsernamesList do
 	
 	it "returns a username for Jane" do
 		EmployeeUsernamesList.set_up_file("spec/spec_data_files/example_employee_usernames_employee_usernames.yml")	
-		EmployeeUsernamesList.set_up_username('Jane Doe', 'janeiscool')  
+#		EmployeeUsernamesList.set_up_username('Jane Doe', 'janeiscool')  
 		
 		expect(EmployeeUsernamesList.username('Jane Doe')).to eq('janeiscool')
 	end
