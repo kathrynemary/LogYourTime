@@ -27,4 +27,4 @@ class TimeLogApp
 
 end
 
-#TimeLogApp.run
+TimeLogApp.run

@@ -9,10 +9,10 @@ class EmployeeAdmins
     unless @admin_list
 			set_up_list
     end
-		interface
+		interface(name)
 	end
 
-  def self.interface
+  def self.interface(name)
 		puts "Would you like #{name} to be an admin? Y/N"
 		answer = gets.upcase.chomp
 		if answer == "Y"
