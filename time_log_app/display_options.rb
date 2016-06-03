@@ -10,9 +10,7 @@ class DisplayOptions
 			answer = non_admin_options
 			verify_non_admin_input(answer)
 		end
-			rescue
-				re_try_input
-	  SelectAction.new(@employee).selection(input)
+	  SelectAction.new(@employee).selection(answer)
 	  display_options(@employee, @type)
 	end
 

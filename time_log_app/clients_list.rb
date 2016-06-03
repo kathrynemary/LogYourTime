@@ -25,10 +25,14 @@ class ClientsList
 		end	
 		
 		display = YAML.load(File.open(@file))
-    display.values.each do |item|
-			puts item
+    unless File.zero?(@file)
+			display.select do |item|
+				puts item
+			end
+    else
+		  raise Errors::NotAnOptionError.new
 		end
-    display
+		display
 	end
 end
 

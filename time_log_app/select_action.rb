@@ -27,6 +27,8 @@ class SelectAction
 		puts "Which of these clients' hours would you like to view?"
 	  input = gets.chomp
 	  calculate_client_hours(input)
+	rescue
+		puts "There are no clients listed yet!"
 	end
   
 	def exit_program
@@ -48,8 +50,8 @@ class SelectAction
     EmployeesList.return_list
 		puts "Which of these employees' hours would you like to view?"
 	  input = gets.chomp
-		TimeLogTotals.employee_totals(input)	
-	  puts TimeLogTotals.sum
+		TimeLogEmployeeMinutes.employee_totals(input)	
+	  puts TimeLogEmployeeMinutes.sum
 	end
 	
 	def add_employee
