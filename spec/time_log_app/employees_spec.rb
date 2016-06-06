@@ -22,7 +22,12 @@ describe Employees do
 		allow(example).to receive(:get_user_name) {'johnithan'}
 		allow(example).to receive (:admin?) {"y"}
 		#example.add_new_employee('Johnithan Doe')
-    expect(EmployeesList.return_list).to include('Johnithan Doe')
+    
+		output = capture_standardout do
+      EmployeesList.return_list
+		end
+   
+	 	expect(output).to include('Johnithan Doe')
 	end
 
 end
