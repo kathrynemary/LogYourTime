@@ -29,7 +29,7 @@ class DisplayOptions
 	end
   
 	def admin_options
-    puts "Press 1 to log time, 2 to view your for the month, 3 to exit, 4 to add a new employee, 5 to add a new client, 6 to run the month's totals by employee, or 7 to run the month's totals by client"
+    puts "Press 1 to log time, 2 to view your hours for the month, 3 to exit, 4 to add a new employee, 5 to add a new client, 6 to run the month's totals by employee, or 7 to run the month's totals by client"
 	  gets.chomp
 	end
   

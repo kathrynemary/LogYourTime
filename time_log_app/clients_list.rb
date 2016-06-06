@@ -25,12 +25,12 @@ class ClientsList
 		end	
 		
 		display = YAML.load(File.open(@file))
-    unless File.zero?(@file)
-			display.select do |item|
-				puts item
-			end
-    else
+    if File.zero?(@file)
 		  raise Errors::NotAnOptionError.new
+		else
+			display.select do |key, value|
+				puts value
+			end
 		end
 		display
 	end

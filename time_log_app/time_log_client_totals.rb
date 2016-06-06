@@ -39,8 +39,12 @@ class TimeLogClientTotals
 	end
 
 	def self.filter_events_by_client(client)
-		@client_events = @file.select do |key, value|
-			value['client'] == client
+		if @file.class == FalseClass
+		  raise Errors::NotAnOptionError.new
+		else
+			@client_events = @file.select do |key, value|
+				value['client'] == client
+			end
 		end
 	end
 	

@@ -30,7 +30,6 @@ class Clients
 	
 	def get_client_name
 		puts "What is the name?"
-		require 'pry'; binding.pry
 		input = gets.chomp
 	  add_new_client(input)
 	end

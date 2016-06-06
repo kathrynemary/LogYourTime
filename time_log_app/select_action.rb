@@ -23,12 +23,16 @@ class SelectAction
 	end
 
 	def get_client
-    display_client_list 
-		puts "Which of these clients' hours would you like to view?"
-	  input = gets.chomp
-	  calculate_client_hours(input)
-	rescue
-		puts "There are no clients listed yet!"
+			display_client_list 
+			puts "Which of these clients' hours would you like to view?"
+			input = gets.chomp
+			calculate_client_hours(input)
+		rescue
+			puts "There are no events listed yet!"
+	end
+
+	def display_client_list
+    ClientsList.get_list
 	end
   
 	def exit_program
@@ -66,10 +70,6 @@ class SelectAction
 	def bad_employee_input
     puts "That name is already in our records!"
 		Employees.new.get_new_name
-	end
-
-	def display_client_list
-    ClientsList.get_list
 	end
 
 	def add_client
