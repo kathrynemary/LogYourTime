@@ -13,13 +13,15 @@ class TimeLog
 	end
 
   def self.add_new_event(employee)
-    set_up(employee)	
-		get_start_time
-		get_end_time
-		calculate_time_worked
-		get_work_type
-  	check_if_needs_client
-		write_to_log
+			set_up(employee)	
+			get_start_time
+			get_end_time
+			calculate_time_worked
+			get_work_type
+			check_if_needs_client
+			write_to_log
+	  rescue
+      puts "We are not able to complete the log."
 	end
 	
 	def self.get_start_time
@@ -50,11 +52,11 @@ class TimeLog
 
 	def self.get_work_type
 	  answer = WorkTypeInterface.new.get_timecode
-	  set_work_type(answer)
+		set_work_type(answer)
 	end
 
   def self.set_work_type(input)
-	  input = @work_type
+	  @work_type = input
 	end
 
 	def self.check_if_needs_client

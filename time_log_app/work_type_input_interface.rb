@@ -8,6 +8,7 @@ class WorkTypeInterface
 		input = ask_timecode
 		verify_timecode_input(input)
 		select_timecode(input)
+    @timecode
 	end
 	
   def verify_timecode_input(input)
