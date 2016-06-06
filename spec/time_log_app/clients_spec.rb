@@ -19,12 +19,16 @@ describe Clients do
 	end
 	
 	it "lets you add 2 new clients" do
-	  example = Clients.new("spec/spec_data_files/example_clients_clients_list.yml")
+    output = capture_standardout do 
+			example = Clients.new("spec/spec_data_files/example_clients_clients_list.yml")
 #    example.add_new_client('NewCompany')
 		allow(example).to receive (:double_check) {"y"}
 #		example.add_new_client('OldCompany')
 		allow(example).to receive (:double_check) {"y"}
-		expect(ClientsList.get_list.values.flatten).to include('NewCompany', 'OldCompany')
+		ClientsList.get_list.values
+		end
+		
+		expect(output).to include('NewCompany', 'OldCompany')
 	end
   
 end
