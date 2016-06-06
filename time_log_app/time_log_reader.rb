@@ -46,7 +46,6 @@ class TimeLogReader
 		@updated_file.each do |number| 
 		  get_event_month(number)
 			if @event_month != @month || @event_year != @year
-				puts "mismatch!"
 				@updated_file.delete(number)
 			else
 			end

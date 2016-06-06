@@ -1,5 +1,6 @@
 require_relative '../time_log_app/start_menu'
 require_relative '../time_log_app/work_type_input_interface'
+require_relative '../time_log_app/time_input_interface'
 require_relative '../time_log_app/time_log_master'
 require_relative '../time_log_app/time_log_employee_minutes'
 require_relative '../time_log_app/time_log_reader'
@@ -29,3 +30,4 @@ def capture_standardout(&blk)
 ensure
 	$stdout = old
 end
+

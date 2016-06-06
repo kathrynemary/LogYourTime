@@ -33,8 +33,11 @@ describe WorkTypeInterface do
 
   it "should redirect from the wrong_input method" do
 		allow(@example).to receive(:ask_timecode) {'3'}
-		@example.wrong_timecode_input
-		expect(@example.timecode).to eq('paid time off') 
+
+    output = capture_standardout do
+		  @example.wrong_timecode_input
+		  expect(@example.timecode).to eq('paid time off') 
+    end
 	end
 
 end

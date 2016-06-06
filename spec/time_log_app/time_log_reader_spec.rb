@@ -34,9 +34,12 @@ describe TimeLogReader do
   
 	it "gets the event month" do
 	  TimeLogReader.get_employee_events("Special Person", "spec/spec_data_files/example_time_log_reader_events.yml")	
-		TimeLogReader.get_event_month(0)
-    expect(TimeLogReader.event_month).to eq(FindCurrentMonth.month)
-		expect(TimeLogReader.event_year).to eq(FindCurrentMonth.year)
+		
+		output = capture_standardout do
+	  	TimeLogReader.get_event_month(0)
+		  expect(TimeLogReader.event_month).to eq(FindCurrentMonth.month)
+		  expect(TimeLogReader.event_year).to eq(FindCurrentMonth.year)
+	  end
 	end
 	
 	it "filters events for Special Person" do

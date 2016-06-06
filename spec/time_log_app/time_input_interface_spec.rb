@@ -1,4 +1,4 @@
-require_relative '../../time_log_app/time_input_interface'
+require 'spec_helper'
 
 describe TimeInputInterface do
 	before :each do
@@ -13,19 +13,25 @@ describe TimeInputInterface do
 	end
 	
 	it "should raise an error or incorrect time input" do
-		allow(@example).to receive(:ask_time) {"Methuselah"}
-		expect { @example.get_time('start') }.to raise_error{ |error|
-			expect(error).to be_a(StandardError)
-		}
+  	allow(@example).to receive(:ask_time) {"Methuselah"}
+
+    output = capture_standardout do
+		  expect { @example.get_time('start') }.to raise_error{ |error|
+		  	expect(error).to be_a(StandardError)
+	  	}
+		end
 	end
 
   it "should raise an error for a date in the future" do
     allow(@example).to receive(:ask_date) {"december 10, 2016"}
 		allow(@example).to receive(:ask_time) {"8:00"}
-    puts Date.today
-		expect { @example.get_time_and_date('start') }.to raise_error{ |error|
-			expect(error).to be_a(StandardError)
-		}
+		
+		output = capture_standardout do
+	  	expect { @example.get_time_and_date('start') }.to raise_error{ |error|
+		  	expect(error).to be_a(StandardError)
+	  	}
+		end
 	end
+
 end
 

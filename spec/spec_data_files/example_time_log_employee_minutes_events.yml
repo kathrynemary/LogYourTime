@@ -4,12 +4,12 @@
   start: 2016-06-01, 8:30
   end: 2016-06-01, 12:50
   minutes_worked: 260
-  work_type: 
+  work_type: billable
   client: ExampleCompany
 ? Miss Scarlett: 2016-06-01, 10:30
 : employee: Miss Scarlett
   start: 2016-06-01, 10:30
   end: 2016-06-01, 12:30
   minutes_worked: 120
-  work_type: 
+  work_type: billable
   client: AnotherCompany
