@@ -24,10 +24,10 @@ require 'stringio'
 
 def capture_standardout(&blk)
   old = $stdout
-	$stdout = fake = StringIO.new
+  $stdout = fake = StringIO.new
   blk.call
-	fake.string
+  fake.string
 ensure
-	$stdout = old
+  $stdout = old
 end
 
