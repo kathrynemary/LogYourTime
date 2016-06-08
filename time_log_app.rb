@@ -21,9 +21,9 @@ require 'yaml/store'
 
 class TimeLogApp
 
-	def self.run
-	  StartMenu.load_menu
-	end
+  def self.run
+    StartMenu.load_menu
+  end
 
 end
 

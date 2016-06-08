@@ -6,22 +6,22 @@
 require 'spec_helper'
 
 describe DisplayOptions do
-	
-	before :each do
-		EmployeesList.set_up_list("spec/spec_data_files/example_select_action_employees_list.yml")
-		#EmployeesList.add_name("Ron Swanson")
-		
-	end
+
+  before :each do
+    EmployeesList.set_up_list("spec/spec_data_files/example_select_action_employees_list.yml")
+    #EmployeesList.add_name("Ron Swanson")
+
+  end
 
   it "should get the time ron has worked this month" do
-		output = capture_standardout do
+    output = capture_standardout do
       example = SelectAction.new("Ron Swanson")
-		  example.selection('2')
-		  example.sum
-		end
-	 	
-		expect(output).to include("0 hours and 0 minutes worked.")
-	end
+      example.selection('2')
+      example.sum
+    end
+
+    expect(output).to include("0 hours and 0 minutes worked.")
+  end
 
 end
 
