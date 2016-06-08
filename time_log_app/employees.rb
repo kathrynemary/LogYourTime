@@ -22,7 +22,7 @@ class Employees
   def double_check(name)
     puts "You entered '#{name}'. Is this correct? Y/N"
     answer = gets.upcase.chomp
-    if answer == "N"
+    unless answer == "Y"
       puts "Okay, never mind then!"
       get_employee_name
     end
