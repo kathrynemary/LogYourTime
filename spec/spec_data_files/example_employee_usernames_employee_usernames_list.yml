@@ -65,7 +65,7 @@
 - :employee: Coldest Person
   :username: igloo
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
@@ -75,7 +75,7 @@
 - :employee: EmployeeUsernames
   :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
@@ -87,7 +87,7 @@
 - :employee: EmployeeUsernames
   :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
@@ -99,7 +99,7 @@
 - :employee: EmployeeUsernames
   :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
@@ -111,7 +111,7 @@
 - :employee: EmployeeUsernames
   :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
@@ -123,7 +123,7 @@
 - :employee: EmployeeUsernames
   :username: '    EmployeeUsernames.set_up_list("spec/spec_data_files/example_employee_usernames_employee_usernames_list.yml")'
 - :employee: EmployeeUsernames
-  :username: '  before :each do'
+  :username: "  before :each do"
 - :employee: EmployeeUsernames
   :username: describe EmployeeUsernames do
 - :employee: EmployeeUsernames
